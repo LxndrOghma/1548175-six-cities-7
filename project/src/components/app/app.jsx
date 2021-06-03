@@ -1,13 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import MainPage from '../main/main-page.jsx';
+import MainPage from '../pages/main/main';
 
-function App({placesCount}) {
-  return <MainPage placesCount={placesCount}/>;
+function App() {
+  const PLACES_COUNT = 5;
+
+  return <MainPage placesCount={PLACES_COUNT}/>;
 }
-
-App.propTypes ={
-  placesCount: PropTypes.number.isRequired,
-};
 
 export default App;
