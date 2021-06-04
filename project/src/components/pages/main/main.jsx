@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from '../../card/card';
 import PageHeader from '../../header/page-header/page-header';
+import { NavLink } from 'react-router-dom';
+import { AppRoute } from '../../../const';
 
 function MainPage({placesCount}) {
   return (
@@ -14,34 +16,34 @@ function MainPage({placesCount}) {
           <section className="locations container">
             <ul className="locations__list tabs__list">
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="/#">
+                <NavLink className="locations__item-link tabs__item" to={ AppRoute.MAIN }>
                   <span>Paris</span>
-                </a>
+                </NavLink>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="/#">
+                <NavLink className="locations__item-link tabs__item" to={ AppRoute.MAIN }>
                   <span>Cologne</span>
-                </a>
+                </NavLink>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="/#">
+                <NavLink className="locations__item-link tabs__item" to={ AppRoute.MAIN }>
                   <span>Brussels</span>
-                </a>
+                </NavLink>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active" href="/#">
+                <NavLink className="locations__item-link tabs__item tabs__item--active" to={ AppRoute.MAIN }>
                   <span>Amsterdam</span>
-                </a>
+                </NavLink>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="/#">
+                <NavLink className="locations__item-link tabs__item" to={ AppRoute.MAIN }>
                   <span>Hamburg</span>
-                </a>
+                </NavLink>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="/#">
+                <NavLink className="locations__item-link tabs__item" to={ AppRoute.MAIN }>
                   <span>Dusseldorf</span>
-                </a>
+                </NavLink>
               </li>
             </ul>
           </section>
