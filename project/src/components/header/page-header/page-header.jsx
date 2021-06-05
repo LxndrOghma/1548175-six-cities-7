@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../const';
-import UserMenuSignedOut from '../user-menu-signed-out/user-menu-signed-out';
+import UserMenu from '../user-menu/user-menu';
 
-function PageHeader() {
+function Header() {
   return (
     <header className="header">
       <div className="container">
@@ -13,11 +13,11 @@ function PageHeader() {
               <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
             </Link>
           </div>
-          <UserMenuSignedOut />
+          <UserMenu />
         </div>
       </div>
     </header>
   );
 }
 
-export default PageHeader;
+export default Header;

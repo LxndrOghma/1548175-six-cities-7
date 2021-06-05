@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../const';
-import PageHeader from '../../header/page-header/page-header';
+import Header from '../../header/page-header/page-header';
 
 const notFoundPageHeaderStyle = {
   marginTop: '0',
@@ -25,7 +25,7 @@ const notFoundPageLinkStyle = {
 function NotFoundPage() {
   return (
     <>
-      <PageHeader />
+      <Header />
       <h1 style = { notFoundPageHeaderStyle }>404 Not Found</h1>
       <Link style = { notFoundPageLinkStyle } to={ AppRoute.MAIN}>Back to main page</Link>
     </>

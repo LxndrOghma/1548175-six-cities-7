@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from '../../card/card';
-import PageHeader from '../../header/page-header/page-header';
+import Header from '../../header/page-header/page-header';
 import { NavLink } from 'react-router-dom';
 import { AppRoute } from '../../../const';
 
 function MainPage({placesCount}) {
   return (
     <div className="page page--gray page--main">
-      <PageHeader />
+      <Header />
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>

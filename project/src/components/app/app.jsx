@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MainPage from '../pages/main/main';
-import SignIn from '../pages/sign-in/sign-in';
-import Favorites from '../pages/favorites/favorites';
-import Room from '../pages/room/room';
+import MainPage from '../pages/main-page/main-page';
+import SignInPage from '../pages/sign-in-page/sign-in-page';
+import FavoritesPage from '../pages/favorites-page/favorites-page';
+import RoomPage from '../pages/room-page/room-page';
 import NotFoundPage from '../pages/not-found-page/not-found-page';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { AppRoute } from '../../const';
@@ -16,13 +16,13 @@ function App({placesCount}) {
           <MainPage placesCount={ placesCount }/>
         </Route>
         <Route exact path = { AppRoute.LOGIN }>
-          <SignIn />
+          <SignInPage />
         </Route>
         <Route exact path = { AppRoute.FAVORITES }>
-          <Favorites />
+          <FavoritesPage />
         </Route>
         <Route exact path = { AppRoute.ROOM}>
-          <Room />
+          <RoomPage />
         </Route>
         <Route>
           <NotFoundPage />

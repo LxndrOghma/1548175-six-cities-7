@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../const';
-import PageHeader from '../../header/page-header/page-header';
+import Header from '../../header/page-header/page-header';
 
 function SignIn() {
   return (
     <div className="page page--gray page--login">
-      <PageHeader />
+      <Header />
 
       <main className="page__main page__main--login">
         <div className="page__login-container container">

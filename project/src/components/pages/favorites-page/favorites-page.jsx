@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../const';
-import PageHeader from '../../header/page-header/page-header';
+import Header from '../../header/page-header/page-header';
 
-function Favorites() {
+function FavoritesPage() {
   return (
     <div className="page">
-      <PageHeader />
+      <Header />
 
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
@@ -143,4 +143,4 @@ function Favorites() {
   );
 }
 
-export default Favorites;
+export default FavoritesPage;
