@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { AppRoute } from '../../const';
 import offersProp from '../props/offers.prop';
 
-function Card({offer}) {
+function Card({offer, setActiveCard}) {
   const {previewImage, price, title, type, isPremium, id, rating} = offer;
-
   return (
-    <article className="cities__place-card place-card">
+    <article className="cities__place-card place-card" onMouseEnter={() => setActiveCard(id)}>
       {isPremium &&
       <div className="place-card__mark">
         <span>Premium</span>
@@ -48,6 +48,7 @@ function Card({offer}) {
 
 Card.propTypes = {
   offer: offersProp,
+  setActiveCard: PropTypes.func.isRequired,
 };
 
 export default Card;
