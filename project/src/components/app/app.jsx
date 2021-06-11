@@ -15,13 +15,13 @@ function App({placesCount, offers}) {
     <BrowserRouter>
       <Switch>
         <Route exact path = { AppRoute.MAIN }>
-          <MainPage placesCount={ placesCount } offers={ offers }/>
+          <MainPage placesCount={ placesCount } offers={ offers } />
         </Route>
         <Route exact path = { AppRoute.LOGIN }>
           <SignInPage />
         </Route>
         <Route exact path = { AppRoute.FAVORITES }>
-          <FavoritesPage />
+          <FavoritesPage offers={ offers } />
         </Route>
         <Route exact path = { AppRoute.ROOM}>
           <RoomPage />

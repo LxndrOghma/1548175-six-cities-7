@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Card from '../card/card';
+import Card from '../offer-card/offer-card';
 import offersProp from '../props/offers.prop';
 
 function OffersList({offers}) {
