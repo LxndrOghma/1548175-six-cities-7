@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../../card/card';
+
 import Header from '../../header/page-header/page-header';
 import { NavLink } from 'react-router-dom';
 import { AppRoute } from '../../../const';
+import offersProp from '../../props/offers.prop';
+import OffersList from '../../offers-list/offers-list';
 
-function MainPage({placesCount}) {
+function MainPage({offers}) {
   return (
     <div className="page page--gray page--main">
       <Header />
@@ -61,16 +63,14 @@ function MainPage({placesCount}) {
                     <use xlinkHref="#icon-arrow-select"></use>
                   </svg>
                 </span>
-                <ul className="places__options places__options--custom places__options--opened">
+                <ul className="places__options places__options--custom places__options--closed">
                   <li className="places__option places__option--active" tabIndex="0">Popular</li>
                   <li className="places__option" tabIndex="0">Price: low to high</li>
                   <li className="places__option" tabIndex="0">Price: high to low</li>
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {new Array(placesCount).fill('').map(() => <Card key={Math.ceil(Math.random()*100000)}/>)}
-              </div>
+              <OffersList offers={offers}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
@@ -82,8 +82,8 @@ function MainPage({placesCount}) {
   );
 }
 
-MainPage.propTypes ={
-  placesCount: PropTypes.number.isRequired,
+MainPage.propTypes = {
+  offers: PropTypes.arrayOf(offersProp).isRequired,
 };
 
 export default MainPage;
