@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { AppRoute } from '../../../const';
-import FavoritesCard from '../favorites-card/favorites-card';
+import FavoritesPlaces from '../favorites-places/favorites-places';
 
 function FavoritesItem({favorite}) {
   const [city , offers] = favorite;
@@ -17,9 +17,7 @@ function FavoritesItem({favorite}) {
           </Link>
         </div>
       </div>
-      <div className="favorites__places">
-        {offers.map((offer) => <FavoritesCard key={offer.id} offer={offer}/>)}
-      </div>
+      <FavoritesPlaces offers={offers}/>
     </li>
 
   );
