@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 import { AppRoute } from '../../../const';
 import FavoritesPlaces from '../favorites-places/favorites-places';
 
-function FavoritesItem({favorite}) {
-  const [city , offers] = favorite;
+function FavoritesItem({city, offers}) {
 
   return (
     <li className="favorites__locations-items">
@@ -24,7 +23,8 @@ function FavoritesItem({favorite}) {
 }
 
 FavoritesItem.propTypes ={
-  favorite: PropTypes.array.isRequired,
+  offers: PropTypes.array.isRequired,
+  city: PropTypes.string.isRequired,
 };
 
 export default FavoritesItem;

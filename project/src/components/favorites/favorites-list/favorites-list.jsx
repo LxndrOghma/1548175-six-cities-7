@@ -6,29 +6,12 @@ import offersProp from '../../props/offers.prop';
 
 
 function FavoritesList({offers}) {
-  const getSortedFavorites = (allOffers) => {
-    const favoriteOffers = allOffers.filter((offer) => offer.isFavorite === true);
-
-    const allFavoritesCities = favoriteOffers.reduce((allCities, offer) => {
-      allCities.push(offer.city.name);
-      return allCities;
-    }, []);
-
-    const uniqueFavoritesCities = Array.from(new Set(allFavoritesCities));
-
-    const sortedFavoriteOffers = uniqueFavoritesCities.reduce((sortedOffers, favoriteOffer) => {
-      sortedOffers[favoriteOffer] = favoriteOffers.filter((offer) => offer.city.name === favoriteOffer);
-      return sortedOffers;
-    }, {});
-
-    return Object.entries(sortedFavoriteOffers);
-  };
-
-  const sortedFavorites = getSortedFavorites(offers);
+  const favoriteOffers = offers.filter((offer) => offer.isFavorite === true);
+  const cities = [...new Set(favoriteOffers.map((item) => item.city.name))];
 
   return (
     <ul className="favorites__list">
-      {sortedFavorites.map((favorite) => <FavoritesItem key={favorite} favorite={favorite} />)}
+      {cities.map((city) => <FavoritesItem key={city} city={city} offers={offers.filter((offer) => city === offer.city.name)} />)}
     </ul>
   );
 }
