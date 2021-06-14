@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '../offer-card/offer-card';
-import offersProp from '../props/offers.prop';
+import offersProp from '../../props/offers.prop';
 
 function OffersList({offers}) {
   const [, setActiveCard] = useState('');

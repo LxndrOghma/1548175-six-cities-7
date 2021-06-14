@@ -5,7 +5,7 @@ import Header from '../../header/page-header/page-header';
 import { NavLink } from 'react-router-dom';
 import { AppRoute } from '../../../const';
 import offersProp from '../../props/offers.prop';
-import OffersList from '../../offers-list/offers-list';
+import OffersList from '../../offers/offers-list/offers-list';
 
 function MainPage({offers}) {
   return (
