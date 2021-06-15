@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '../offer-card/offer-card';
 import offersProp from '../../props/offers.prop';
 
-function OffersList({offers}) {
-  const [, setActiveCard] = useState('');
+function OffersList({offers, setActiveCard}) {
 
   return (
     <div className="cities__places-list places__list tabs__content">
@@ -16,6 +15,7 @@ function OffersList({offers}) {
 
 OffersList.propTypes = {
   offers: PropTypes.arrayOf(offersProp).isRequired,
+  setActiveCard: PropTypes.func.isRequired,
 };
 
 export default OffersList;

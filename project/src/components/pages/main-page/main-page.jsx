@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Header from '../../header/page-header/page-header';
@@ -6,8 +6,11 @@ import { NavLink } from 'react-router-dom';
 import { AppRoute } from '../../../const';
 import offersProp from '../../props/offers.prop';
 import OffersList from '../../offers/offers-list/offers-list';
+import Map from '../../map/map';
 
 function MainPage({offers}) {
+  const [activeCard, setActiveCard] = useState('');
+
   return (
     <div className="page page--gray page--main">
       <Header />
@@ -70,10 +73,18 @@ function MainPage({offers}) {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <OffersList offers={offers}/>
+              <OffersList
+                offers={offers}
+                setActiveCard={setActiveCard}
+              />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map map">
+                <Map
+                  offers={offers}
+                  activeCard={activeCard}
+                />
+              </section>
             </div>
           </div>
         </div>
