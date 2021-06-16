@@ -9,22 +9,23 @@ import RoomPage from '../pages/room-page/room-page';
 import NotFoundPage from '../pages/not-found-page/not-found-page';
 import { AppRoute } from '../../const';
 import offersProp from '../props/offers.prop';
+import reviewsProp from '../props/reviews.prop';
 
-function App({placesCount, offers}) {
+function App({offers, reviews}) {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path = { AppRoute.MAIN }>
-          <MainPage placesCount={ placesCount } offers={ offers } />
+        <Route exact path = {AppRoute.MAIN}>
+          <MainPage offers={offers} />
         </Route>
-        <Route exact path = { AppRoute.LOGIN }>
+        <Route exact path = {AppRoute.LOGIN}>
           <SignInPage />
         </Route>
-        <Route exact path = { AppRoute.FAVORITES }>
+        <Route exact path = {AppRoute.FAVORITES}>
           <FavoritesPage offers={ offers } />
         </Route>
-        <Route exact path = { AppRoute.ROOM}>
-          <RoomPage />
+        <Route exact path = {AppRoute.ROOM}>
+          <RoomPage reviews={reviews}/>
         </Route>
         <Route>
           <NotFoundPage />
@@ -35,8 +36,8 @@ function App({placesCount, offers}) {
 }
 
 App.propTypes ={
-  placesCount: PropTypes.number.isRequired,
-  offers: PropTypes.arrayOf( offersProp ).isRequired,
+  offers: PropTypes.arrayOf(offersProp).isRequired,
+  reviews: PropTypes.arrayOf(reviewsProp).isRequired,
 };
 
 
