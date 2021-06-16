@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { AppRoute } from '../../../const';
-import CommentForm from '../../comment-form/comment-form';
+import CommentForm from '../../comment/comment-form/comment-form';
 import Header from '../../header/page-header/page-header';
 
 function Room() {

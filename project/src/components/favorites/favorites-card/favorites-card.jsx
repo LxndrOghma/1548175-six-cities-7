@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import offersProp from '../../props/offers.prop';
 
@@ -42,7 +41,7 @@ function FavoritesCard({offer}) {
 }
 
 FavoritesCard.propTypes = {
-  offer: PropTypes.shape(offersProp).isRequired,
+  offer: offersProp,
 };
 
 export default FavoritesCard;

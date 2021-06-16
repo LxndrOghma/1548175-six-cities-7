@@ -2,13 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { AppRoute } from '../../const';
-import offersProp from '../props/offers.prop';
+import { AppRoute } from '../../../const';
+import offersProp from '../../props/offers.prop';
 
 function Card({offer, setActiveCard}) {
   const {previewImage, price, title, type, isPremium, id, rating} = offer;
   return (
-    <article className="cities__place-card place-card" onMouseEnter={() => setActiveCard(id)}>
+    <article className="cities__place-card place-card" onMouseEnter={() => setActiveCard(id)} onMouseLeave={() => setActiveCard('')}>
       {isPremium &&
       <div className="place-card__mark">
         <span>Premium</span>
