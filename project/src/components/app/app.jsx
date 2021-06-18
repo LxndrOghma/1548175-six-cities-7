@@ -11,7 +11,7 @@ import { AppRoute } from '../../const';
 import offersProp from '../props/offers.prop';
 import reviewsProp from '../props/reviews.prop';
 
-function App({offers, reviews}) {
+function App({offers, reviews, nearestOffers}) {
   return (
     <BrowserRouter>
       <Switch>
@@ -25,7 +25,7 @@ function App({offers, reviews}) {
           <FavoritesPage offers={ offers } />
         </Route>
         <Route exact path = {AppRoute.ROOM}>
-          <RoomPage reviews={reviews}/>
+          <RoomPage reviews={reviews} nearestOffers={nearestOffers}/>
         </Route>
         <Route>
           <NotFoundPage />
@@ -37,6 +37,7 @@ function App({offers, reviews}) {
 
 App.propTypes ={
   offers: PropTypes.arrayOf(offersProp).isRequired,
+  nearestOffers: PropTypes.arrayOf(offersProp).isRequired,
   reviews: PropTypes.arrayOf(reviewsProp).isRequired,
 };
 
