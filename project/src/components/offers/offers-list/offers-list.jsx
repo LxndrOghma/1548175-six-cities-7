@@ -3,13 +3,10 @@ import PropTypes from 'prop-types';
 
 import Card from '../offer-card/offer-card';
 import offersProp from '../../props/offers.prop';
-import { useParams } from 'react-router-dom';
+import { OffersListType } from '../../../const';
 
-function OffersList({offers, setActiveCard}) {
-  const params = useParams();
-
-  const isRoomPage = Boolean(params.id);
-
+function OffersList({offers, setActiveCard, type}) {
+  const isRoomPage = type === OffersListType.ROOM_PAGE;
 
   return (
     <div className={
@@ -27,6 +24,7 @@ function OffersList({offers, setActiveCard}) {
 OffersList.propTypes = {
   offers: PropTypes.arrayOf(offersProp).isRequired,
   setActiveCard: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default OffersList;

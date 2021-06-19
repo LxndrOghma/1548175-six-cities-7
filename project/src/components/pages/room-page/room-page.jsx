@@ -7,6 +7,7 @@ import reviewsProp from '../../props/reviews.prop';
 import offersProp from '../../props/offers.prop';
 import Map from '../../map/map';
 import OffersList from '../../offers/offers-list/offers-list';
+import { OffersListType } from '../../../const';
 
 function Room({reviews, nearestOffers}) {
   const [activeCard, setActiveCard] = useState('');
@@ -148,6 +149,7 @@ function Room({reviews, nearestOffers}) {
           <OffersList
             offers={nearestOffers}
             setActiveCard={setActiveCard}
+            type={OffersListType.ROOM_PAGE}
           />
         </div>
       </main>

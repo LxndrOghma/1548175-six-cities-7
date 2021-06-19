@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Header from '../../header/page-header/page-header';
 import { NavLink } from 'react-router-dom';
-import { AppRoute } from '../../../const';
+import { AppRoute, OffersListType } from '../../../const';
 import offersProp from '../../props/offers.prop';
 import OffersList from '../../offers/offers-list/offers-list';
 import Map from '../../map/map';
@@ -76,6 +76,7 @@ function MainPage({offers}) {
               <OffersList
                 offers={offers}
                 setActiveCard={setActiveCard}
+                type={OffersListType.MAIN_PAGE}
               />
             </section>
             <div className="cities__right-section">
