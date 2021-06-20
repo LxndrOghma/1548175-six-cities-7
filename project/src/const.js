@@ -22,9 +22,15 @@ const PinSettings = {
   ANCHOR: [15, 30],
 };
 
+const OffersListType = {
+  MAIN_PAGE: 'main',
+  ROOM_PAGE: 'room',
+};
+
 export {
   AppRoute,
   ratings,
   RatingSystem,
-  PinSettings
+  PinSettings,
+  OffersListType
 };

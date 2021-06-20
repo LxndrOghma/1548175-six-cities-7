@@ -2,18 +2,33 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { AppRoute } from '../../../const';
 import offersProp from '../../props/offers.prop';
 
-function Card({offer, setActiveCard}) {
+function Card({offer, setActiveCard, isRoomPage}) {
   const {previewImage, price, title, type, isPremium, id, rating} = offer;
+
   return (
-    <article className="cities__place-card place-card" onMouseEnter={() => setActiveCard(id)} onMouseLeave={() => setActiveCard('')}>
+    <article
+      className={
+        `place-card
+        ${isRoomPage
+      ? 'near-places__card'
+      : 'cities__place-card'}`
+      }
+      onMouseEnter={() => setActiveCard(id)}
+      onMouseLeave={() => setActiveCard('')}
+    >
       {isPremium &&
       <div className="place-card__mark">
         <span>Premium</span>
       </div>}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={
+        `place-card__imafe-wrapper
+        ${isRoomPage
+      ? 'near-places__image-wrapper'
+      : 'cities__image-wrapper'}`
+      }
+      >
         <Link to={ `/offer/${id}` }>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place" />
         </Link>
@@ -38,7 +53,7 @@ function Card({offer, setActiveCard}) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={ AppRoute.ROOM }>{title}</Link>
+          <Link to={ `/offer/${id}` }>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -49,6 +64,7 @@ function Card({offer, setActiveCard}) {
 Card.propTypes = {
   offer: offersProp,
   setActiveCard: PropTypes.func.isRequired,
+  isRoomPage: PropTypes.bool.isRequired,
 };
 
 export default Card;
