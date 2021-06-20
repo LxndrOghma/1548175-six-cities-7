@@ -149,7 +149,7 @@ function Room({reviews, nearestOffers}) {
           <OffersList
             offers={nearestOffers}
             setActiveCard={setActiveCard}
-            type={OffersListType.ROOM_PAGE}
+            pageType={OffersListType.ROOM_PAGE}
           />
         </div>
       </main>

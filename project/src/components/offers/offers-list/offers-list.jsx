@@ -3,20 +3,16 @@ import PropTypes from 'prop-types';
 
 import Card from '../offer-card/offer-card';
 import offersProp from '../../props/offers.prop';
-import { OffersListType } from '../../../const';
+import { offersListSettings} from '../../../const';
 
-function OffersList({offers, setActiveCard, type}) {
-  const isRoomPage = type === OffersListType.ROOM_PAGE;
-
+function OffersList({offers, setActiveCard, pageType}) {
   return (
     <div className={
       `places__list
-      ${isRoomPage
-      ? 'near-places__list'
-      : 'cities__places-list tabs__content'}`
+      ${offersListSettings[pageType].classNameListDiv}`
     }
     >
-      {offers.map((offer) => <Card key={offer.id} offer={offer} setActiveCard={setActiveCard} isRoomPage={isRoomPage}/>)}
+      {offers.map((offer) => <Card key={offer.id} offer={offer} setActiveCard={setActiveCard} pageType={pageType}/>)}
     </div>
   );
 }
@@ -24,7 +20,7 @@ function OffersList({offers, setActiveCard, type}) {
 OffersList.propTypes = {
   offers: PropTypes.arrayOf(offersProp).isRequired,
   setActiveCard: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired,
+  pageType: PropTypes.string.isRequired,
 };
 
 export default OffersList;

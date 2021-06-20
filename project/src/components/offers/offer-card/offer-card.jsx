@@ -3,17 +3,16 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import offersProp from '../../props/offers.prop';
+import { offersListSettings } from '../../../const';
 
-function Card({offer, setActiveCard, isRoomPage}) {
+function Card({offer, setActiveCard, pageType}) {
   const {previewImage, price, title, type, isPremium, id, rating} = offer;
 
   return (
     <article
       className={
         `place-card
-        ${isRoomPage
-      ? 'near-places__card'
-      : 'cities__place-card'}`
+        ${offersListSettings[pageType].classNameCardArticle}`
       }
       onMouseEnter={() => setActiveCard(id)}
       onMouseLeave={() => setActiveCard('')}
@@ -23,10 +22,8 @@ function Card({offer, setActiveCard, isRoomPage}) {
         <span>Premium</span>
       </div>}
       <div className={
-        `place-card__imafe-wrapper
-        ${isRoomPage
-      ? 'near-places__image-wrapper'
-      : 'cities__image-wrapper'}`
+        `place-card__image-wrapper
+        ${offersListSettings[pageType].classNameWrapperDiv}`
       }
       >
         <Link to={ `/offer/${id}` }>
@@ -64,7 +61,7 @@ function Card({offer, setActiveCard, isRoomPage}) {
 Card.propTypes = {
   offer: offersProp,
   setActiveCard: PropTypes.func.isRequired,
-  isRoomPage: PropTypes.bool.isRequired,
+  pageType: PropTypes.string.isRequired,
 };
 
 export default Card;

@@ -76,7 +76,7 @@ function MainPage({offers}) {
               <OffersList
                 offers={offers}
                 setActiveCard={setActiveCard}
-                type={OffersListType.MAIN_PAGE}
+                pageType={OffersListType.MAIN_PAGE}
               />
             </section>
             <div className="cities__right-section">

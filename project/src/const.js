@@ -27,10 +27,24 @@ const OffersListType = {
   ROOM_PAGE: 'room',
 };
 
+const offersListSettings= {
+  main: {
+    classNameListDiv: 'cities__places-list tabs__content',
+    classNameCardArticle: 'cities__place-card',
+    classNameWrapperDiv: 'cities__image-wrapper',
+  },
+  room: {
+    classNameListDiv: 'near-places__list',
+    classNameCardArticle: 'near-places__card',
+    classNameWrapperDiv: 'near-places__image-wrapper',
+  },
+};
+
 export {
   AppRoute,
   ratings,
   RatingSystem,
   PinSettings,
-  OffersListType
+  OffersListType,
+  offersListSettings
 };
