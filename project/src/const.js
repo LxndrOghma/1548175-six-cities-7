@@ -27,7 +27,7 @@ const cities = [
     id: 'city-5',
   },
   {
-    name: 'Hamburg',
+    name: 'Dusseldorf',
     id: 'city-6',
   },
 ];

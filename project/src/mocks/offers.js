@@ -46,7 +46,7 @@ const offers = [
         longitude: 4.895168,
         zoom: 10,
       },
-      name: 'Amsterdam',
+      name: 'Paris',
     },
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     goods: ['Heating', 'Kitchen', 'Washing machine', 'Coffee machine'],

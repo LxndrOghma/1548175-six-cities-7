@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import Header from '../../header/page-header/page-header';
-import { NavLink } from 'react-router-dom';
-import { AppRoute, OffersListType } from '../../../const';
+import { OffersListType } from '../../../const';
 import offersProp from '../../props/offers.prop';
 import OffersList from '../../offers/offers-list/offers-list';
 import Map from '../../map/map';
+import CitiesList from '../../cities/cities-list/cities-list';
+import { getSortedOffersList } from '../../../utils';
+import { ActionCreator } from '../../../store/action';
 
-function MainPage({offers}) {
+function MainPage({offers, city, onCityChange}) {
   const [activeCard, setActiveCard] = useState('');
+
+  const sortedOffers = getSortedOffersList(offers, city);
 
   return (
     <div className="page page--gray page--main">
@@ -17,42 +22,7 @@ function MainPage({offers}) {
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <div className="tabs">
-          <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <NavLink className="locations__item-link tabs__item" to={ AppRoute.MAIN }>
-                  <span>Paris</span>
-                </NavLink>
-              </li>
-              <li className="locations__item">
-                <NavLink className="locations__item-link tabs__item" to={ AppRoute.MAIN }>
-                  <span>Cologne</span>
-                </NavLink>
-              </li>
-              <li className="locations__item">
-                <NavLink className="locations__item-link tabs__item" to={ AppRoute.MAIN }>
-                  <span>Brussels</span>
-                </NavLink>
-              </li>
-              <li className="locations__item">
-                <NavLink className="locations__item-link tabs__item tabs__item--active" to={ AppRoute.MAIN }>
-                  <span>Amsterdam</span>
-                </NavLink>
-              </li>
-              <li className="locations__item">
-                <NavLink className="locations__item-link tabs__item" to={ AppRoute.MAIN }>
-                  <span>Hamburg</span>
-                </NavLink>
-              </li>
-              <li className="locations__item">
-                <NavLink className="locations__item-link tabs__item" to={ AppRoute.MAIN }>
-                  <span>Dusseldorf</span>
-                </NavLink>
-              </li>
-            </ul>
-          </section>
-        </div>
+        <CitiesList onCityChange={onCityChange}/>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
@@ -74,7 +44,7 @@ function MainPage({offers}) {
                 </ul>
               </form>
               <OffersList
-                offers={offers}
+                offers={sortedOffers}
                 setActiveCard={setActiveCard}
                 pageType={OffersListType.MAIN_PAGE}
               />
@@ -82,7 +52,7 @@ function MainPage({offers}) {
             <div className="cities__right-section">
               <section className="cities__map map">
                 <Map
-                  offers={offers}
+                  offers={sortedOffers}
                   activeCard={activeCard}
                 />
               </section>
@@ -96,6 +66,20 @@ function MainPage({offers}) {
 
 MainPage.propTypes = {
   offers: PropTypes.arrayOf(offersProp).isRequired,
+  city: PropTypes.string.isRequired,
+  onCityChange: PropTypes.func.isRequired,
 };
 
-export default MainPage;
+const mapStateToProps = (state) => ({
+  city: state.city,
+  offers: state.offers,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onCityChange(evt) {
+    dispatch(ActionCreator.changeCity(evt));
+  },
+});
+
+export { MainPage };
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

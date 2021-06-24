@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { composeWithDevTools} from 'redux-devtools-extension';
 
 import App from './components/app/app';
-import {offers, nearestOffers} from './mocks/offers';
+import {nearestOffers} from './mocks/offers';
 import reviews from './mocks/reviews';
 import { reducer } from './store/reducer';
 
@@ -18,7 +18,6 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <App
-        offers={offers}
         reviews={reviews}
         nearestOffers={nearestOffers}
       />

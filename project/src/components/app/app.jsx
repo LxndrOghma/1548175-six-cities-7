@@ -11,18 +11,18 @@ import { AppRoute } from '../../const';
 import offersProp from '../props/offers.prop';
 import reviewsProp from '../props/reviews.prop';
 
-function App({offers, reviews, nearestOffers}) {
+function App({reviews, nearestOffers}) {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path = {AppRoute.MAIN}>
-          <MainPage offers={offers} />
+          <MainPage />
         </Route>
         <Route exact path = {AppRoute.LOGIN}>
           <SignInPage />
         </Route>
         <Route exact path = {AppRoute.FAVORITES}>
-          <FavoritesPage offers={ offers } />
+          <FavoritesPage />
         </Route>
         <Route exact path = {AppRoute.ROOM}>
           <RoomPage reviews={reviews} nearestOffers={nearestOffers}/>
@@ -35,8 +35,7 @@ function App({offers, reviews, nearestOffers}) {
   );
 }
 
-App.propTypes ={
-  offers: PropTypes.arrayOf(offersProp).isRequired,
+App.propTypes = {
   nearestOffers: PropTypes.arrayOf(offersProp).isRequired,
   reviews: PropTypes.arrayOf(reviewsProp).isRequired,
 };
