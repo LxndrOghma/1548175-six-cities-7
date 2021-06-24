@@ -27,7 +27,7 @@ function MainPage({offers, city, onCityChange}) {
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <CitiesList onCityChange={onCityChange}/>
+        <CitiesList onCityChange={onCityChange} activeCity={city}/>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
