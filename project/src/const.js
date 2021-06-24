@@ -1,9 +1,36 @@
-const AppRoute ={
+const AppRoute = {
   MAIN: '/',
   LOGIN: '/login',
   FAVORITES: '/favorites',
   ROOM: '/offer/:id',
 };
+
+const cities = [
+  {
+    name: 'Paris',
+    id: 'city-1',
+  },
+  {
+    name: 'Cologne',
+    id: 'city-2',
+  },
+  {
+    name: 'Brussels',
+    id: 'city-3',
+  },
+  {
+    name: 'Amsterdam',
+    id: 'city-4',
+  },
+  {
+    name: 'Hamburg',
+    id: 'city-5',
+  },
+  {
+    name: 'Hamburg',
+    id: 'city-6',
+  },
+];
 
 const ratings = [5, 4, 3, 2, 1];
 
@@ -46,5 +73,6 @@ export {
   RatingSystem,
   PinSettings,
   OffersListType,
-  offersListSettings
+  offersListSettings,
+  cities
 };

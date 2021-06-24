@@ -25,7 +25,10 @@ const getNumericFormatedData = (utcDate) => {
   return `${dd}-${mm}-${yy}`;
 };
 
+const getSortedOffersList = (offers, city) => offers.filter(({city: name}) => name === city);
+
 export {
   getMonthYearFormatedDate,
-  getNumericFormatedData
+  getNumericFormatedData,
+  getSortedOffersList
 };

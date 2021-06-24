@@ -1,4 +1,15 @@
-export const ActionType = {
+const ActionType = {
   CHANGE_CITY: 'main/changeCity',
-  FILL_OFFERS_LIST: 'main/fillOffersList',
+};
+
+const ActionCreator ={
+  changeCity: (evt) => ({
+    type: ActionType.CHANGE_CITY,
+    payload: evt.target.textContent,
+  }),
+};
+
+export {
+  ActionType,
+  ActionCreator
 };
