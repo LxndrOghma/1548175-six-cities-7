@@ -10,11 +10,16 @@ import Map from '../../map/map';
 import CitiesList from '../../cities/cities-list/cities-list';
 import { getSortedOffersList } from '../../../utils';
 import { ActionCreator } from '../../../store/action';
+import EmptyMainPage from '../../empty-main-page/empty-main-page';
 
 function MainPage({offers, city, onCityChange}) {
   const [activeCard, setActiveCard] = useState('');
 
   const sortedOffers = getSortedOffersList(offers, city);
+
+  if (!sortedOffers.length) {
+    return <EmptyMainPage onCityChange={onCityChange} city={city}/>;
+  }
 
   return (
     <div className="page page--gray page--main">
