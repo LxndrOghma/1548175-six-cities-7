@@ -15,9 +15,8 @@ import EmptyMainPage from '../../empty-main-page/empty-main-page';
 function MainPage({offers, city, onCityChange}) {
   const [activeCard, setActiveCard] = useState('');
 
-  const sortedOffers = getSortedOffersList(offers, city);
 
-  if (!sortedOffers.length) {
+  if (!offers.length) {
     return <EmptyMainPage onCityChange={onCityChange} city={city}/>;
   }
 
@@ -32,7 +31,7 @@ function MainPage({offers, city, onCityChange}) {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{sortedOffers.length} {sortedOffers.length === 1 ? 'place' : 'places'} to stay in {city}</b>
+              <b className="places__found">{offers.length} {offers.length === 1 ? 'place' : 'places'} to stay in {city}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -49,7 +48,7 @@ function MainPage({offers, city, onCityChange}) {
                 </ul>
               </form>
               <OffersList
-                offers={sortedOffers}
+                offers={offers}
                 setActiveCard={setActiveCard}
                 pageType={OffersListType.MAIN_PAGE}
               />
@@ -57,7 +56,7 @@ function MainPage({offers, city, onCityChange}) {
             <div className="cities__right-section">
               <section className="cities__map map">
                 <Map
-                  offers={sortedOffers}
+                  offers={offers}
                   activeCard={activeCard}
                 />
               </section>
@@ -77,12 +76,12 @@ MainPage.propTypes = {
 
 const mapStateToProps = (state) => ({
   city: state.city,
-  offers: state.offers,
+  offers: getSortedOffersList(state.offers, state.city),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onCityChange(evt) {
-    dispatch(ActionCreator.changeCity(evt));
+    dispatch(ActionCreator.changeCity(evt.target.textContent));
   },
 });
 

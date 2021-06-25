@@ -3,9 +3,9 @@ const ActionType = {
 };
 
 const ActionCreator ={
-  changeCity: (evt) => ({
+  changeCity: (payload) => ({
     type: ActionType.CHANGE_CITY,
-    payload: evt.target.textContent,
+    payload: payload,
   }),
 };
 
