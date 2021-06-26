@@ -13,6 +13,7 @@ function Map({offers, activeCard}) {
 
   const mapRef = useRef(null);
   const map = useMap(mapRef,location);
+  const markers = leaflet.layerGroup();
 
   const defaultCustomPin = leaflet.icon({
     iconUrl: PinSettings.DEFAULT_IMG,
@@ -28,8 +29,9 @@ function Map({offers, activeCard}) {
 
   useEffect(() => {
     if (map) {
+      markers.clearLayers();
       offers.forEach(({location: {latitude, longitude}, id}) => {
-        leaflet
+        const marker = leaflet
           .marker({
             lat: latitude,
             lng: longitude,
@@ -37,11 +39,17 @@ function Map({offers, activeCard}) {
             icon: (id === activeCard)
               ? activeCustomPin
               : defaultCustomPin,
-          })
-          .addTo(map);
+          });
+        markers.addLayer(marker);
       });
+      markers.addTo(map);
     }
-  }, [map, offers, defaultCustomPin, activeCard, activeCustomPin]);
+
+    return () => {
+      markers.clearLayers();
+    };
+
+  }, [map, offers, defaultCustomPin, activeCard, activeCustomPin, markers]);
 
   return (
     <div

@@ -1,9 +1,36 @@
-const AppRoute ={
+const AppRoute = {
   MAIN: '/',
   LOGIN: '/login',
   FAVORITES: '/favorites',
   ROOM: '/offer/:id',
 };
+
+const cities = [
+  {
+    name: 'Paris',
+    id: 'city-1',
+  },
+  {
+    name: 'Cologne',
+    id: 'city-2',
+  },
+  {
+    name: 'Brussels',
+    id: 'city-3',
+  },
+  {
+    name: 'Amsterdam',
+    id: 'city-4',
+  },
+  {
+    name: 'Hamburg',
+    id: 'city-5',
+  },
+  {
+    name: 'Dusseldorf',
+    id: 'city-6',
+  },
+];
 
 const ratings = [5, 4, 3, 2, 1];
 
@@ -27,10 +54,25 @@ const OffersListType = {
   ROOM_PAGE: 'room',
 };
 
+const offersListSettings= {
+  main: {
+    classNameListDiv: 'cities__places-list tabs__content',
+    classNameCardArticle: 'cities__place-card',
+    classNameWrapperDiv: 'cities__image-wrapper',
+  },
+  room: {
+    classNameListDiv: 'near-places__list',
+    classNameCardArticle: 'near-places__card',
+    classNameWrapperDiv: 'near-places__image-wrapper',
+  },
+};
+
 export {
   AppRoute,
   ratings,
   RatingSystem,
   PinSettings,
-  OffersListType
+  OffersListType,
+  offersListSettings,
+  cities
 };

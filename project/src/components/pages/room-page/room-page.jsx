@@ -8,6 +8,7 @@ import offersProp from '../../props/offers.prop';
 import Map from '../../map/map';
 import OffersList from '../../offers/offers-list/offers-list';
 import { OffersListType } from '../../../const';
+import { connect } from 'react-redux';
 
 function Room({reviews, nearestOffers}) {
   const [activeCard, setActiveCard] = useState('');
@@ -149,7 +150,7 @@ function Room({reviews, nearestOffers}) {
           <OffersList
             offers={nearestOffers}
             setActiveCard={setActiveCard}
-            type={OffersListType.ROOM_PAGE}
+            pageType={OffersListType.ROOM_PAGE}
           />
         </div>
       </main>
@@ -162,4 +163,11 @@ Room.propTypes = {
   nearestOffers: PropTypes.arrayOf(offersProp).isRequired,
 };
 
-export default Room;
+const mapStateToProps = (state) => ({
+  reviews: state.reviews,
+  nearestOffers: state.nearestOffers,
+});
+
+export { Room };
+export default connect(mapStateToProps)(Room);
+
