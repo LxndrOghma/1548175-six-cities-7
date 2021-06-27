@@ -3,7 +3,7 @@ import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import PropTypes from 'prop-types';
 
-import useMap from '../../hooks/use-map/useMap';
+import useMap from '../../hooks/use-map/use-map';
 import { PinSettings } from '../../const';
 import offersProp from '../props/offers.prop';
 

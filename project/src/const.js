@@ -67,6 +67,13 @@ const offersListSettings= {
   },
 };
 
+const sortingOptions = [
+  'Popular',
+  'Price: low to high',
+  'Price: high to low',
+  'Top rated first',
+];
+
 export {
   AppRoute,
   ratings,
@@ -74,5 +81,6 @@ export {
   PinSettings,
   OffersListType,
   offersListSettings,
-  cities
+  cities,
+  sortingOptions
 };
