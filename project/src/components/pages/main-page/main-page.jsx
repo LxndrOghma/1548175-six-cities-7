@@ -8,14 +8,13 @@ import offersProp from '../../props/offers.prop';
 import OffersList from '../../offers/offers-list/offers-list';
 import Map from '../../map/map';
 import CitiesList from '../../cities/cities-list/cities-list';
-import { getSortedOffersList } from '../../../utils';
+import { getSortedByCityOffersList, getSortedOffers } from '../../../utils';
 import { ActionCreator } from '../../../store/action';
 import EmptyMainPage from '../../empty-main-page/empty-main-page';
 import PlacesSorting from '../../sorting/places-sorting/places-sorting';
 
-function MainPage({offers, city, onCityChange}) {
+function MainPage({offers, city, onCityChange, onSortTypeChange}) {
   const [activeCard, setActiveCard] = useState('');
-
 
   if (!offers.length) {
     return <EmptyMainPage onCityChange={onCityChange} city={city}/>;
@@ -33,7 +32,7 @@ function MainPage({offers, city, onCityChange}) {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{offers.length} {offers.length === 1 ? 'place' : 'places'} to stay in {city}</b>
-              <PlacesSorting />
+              <PlacesSorting onSortTypeChange={onSortTypeChange}/>
               <OffersList
                 offers={offers}
                 setActiveCard={setActiveCard}
@@ -59,16 +58,24 @@ MainPage.propTypes = {
   offers: PropTypes.arrayOf(offersProp).isRequired,
   city: PropTypes.string.isRequired,
   onCityChange: PropTypes.func.isRequired,
+  onSortTypeChange: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  city: state.city,
-  offers: getSortedOffersList(state.offers, state.city),
-});
+const mapStateToProps = (state) => {
+  const offers = getSortedByCityOffersList(state.offers, state.city);
+
+  return ({
+    city: state.city,
+    offers: getSortedOffers(offers, state.sortType),
+  });
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onCityChange(evt) {
     dispatch(ActionCreator.changeCity(evt.target.textContent));
+  },
+  onSortTypeChange(evt) {
+    dispatch(ActionCreator.changeSortType(evt.target.textContent));
   },
 });
 

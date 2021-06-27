@@ -67,12 +67,12 @@ const offersListSettings= {
   },
 };
 
-const sortingOptions = [
-  'Popular',
-  'Price: low to high',
-  'Price: high to low',
-  'Top rated first',
-];
+const SortingOptions = {
+  POPULAR: 'Popular',
+  LOW_TO_HIGH_PRICE: 'Price: low to high',
+  HIGH_TO_LOW_PRICE: 'Price: high to low',
+  TOP_RATED: 'Top rated first',
+};
 
 export {
   AppRoute,
@@ -82,5 +82,5 @@ export {
   OffersListType,
   offersListSettings,
   cities,
-  sortingOptions
+  SortingOptions
 };

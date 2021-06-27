@@ -7,6 +7,7 @@ const initialState = {
   offers: offers,
   reviews: reviews,
   nearestOffers: nearestOffers,
+  sortType: 'Popular',
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,6 +16,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         city: action.payload,
+      };
+    case ActionType.CHANGE_SORT_TYPE:
+      return {
+        ...state,
+        sortType: action.payload,
       };
     default:
       return state;
