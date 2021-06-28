@@ -1,3 +1,5 @@
+import { SortingOptions } from './const';
+
 const getMonthYearFormatedDate = (utcDate) => {
   const date = new Date(utcDate);
 
@@ -25,10 +27,31 @@ const getNumericFormatedData = (utcDate) => {
   return `${dd}-${mm}-${yy}`;
 };
 
-const getSortedOffersList = (offers, city) => offers.filter((offer) => offer.city.name === city);
+const getSortedByCityOffersList = (offers, city) => offers.filter((offer) => offer.city.name === city);
+
+
+const sortLowToHighPrice = (arr) => arr.sort((a, b) => a.price - b.price);
+const sortHighToLowPrice = (arr) => arr.sort((a, b) => b.price - a.price);
+const sortByRating = (arr) => arr.sort((a, b) => b.rating - a.rating);
+
+const getSortedOffers = (offers, sortType) => {
+  switch (sortType) {
+    case SortingOptions.POPULAR:
+      return offers;
+    case SortingOptions.LOW_TO_HIGH_PRICE:
+      return sortLowToHighPrice(offers);
+    case SortingOptions.HIGH_TO_LOW_PRICE:
+      return sortHighToLowPrice(offers);
+    case SortingOptions.TOP_RATED:
+      return sortByRating(offers);
+    default:
+      return offers;
+  }
+};
 
 export {
   getMonthYearFormatedDate,
   getNumericFormatedData,
-  getSortedOffersList
+  getSortedByCityOffersList,
+  getSortedOffers
 };

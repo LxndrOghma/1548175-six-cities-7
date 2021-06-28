@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Card from '../offer-card/offer-card';
 import offersProp from '../../props/offers.prop';
-import { offersListSettings} from '../../../const';
+import { offersListSettings } from '../../../const';
 
 function OffersList({offers, setActiveCard, pageType}) {
   return (
