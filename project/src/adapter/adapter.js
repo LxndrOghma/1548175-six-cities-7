@@ -1,4 +1,4 @@
-export const offerAdapter = (offer) => {
+export const getAdaptedOffer = (offer) => {
   const adaptedOffer = {
     ...offer,
     host: {

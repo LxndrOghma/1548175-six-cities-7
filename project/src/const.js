@@ -5,6 +5,10 @@ const AppRoute = {
   ROOM: '/offer/:id',
 };
 
+const APIRoute = {
+  HOTELS: '/hotels',
+};
+
 const cities = [
   {
     name: 'Paris',
@@ -76,6 +80,7 @@ const SortingOptions = {
 
 export {
   AppRoute,
+  APIRoute,
   ratings,
   RatingSystem,
   PinSettings,
