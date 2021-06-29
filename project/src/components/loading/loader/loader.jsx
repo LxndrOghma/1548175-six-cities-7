@@ -1,9 +1,16 @@
 import React from 'react';
+import { RingSpinner } from 'react-spinners-kit';
 
-function LoadingScreen() {
+const style = {
+  margin: '0 auto',
+};
+
+function Loader() {
   return (
-    <p>Loading ...</p>
+    <div style={style}>
+      <RingSpinner size={30} color="#686769" />
+    </div>
   );
 }
 
-export default LoadingScreen;
+export default Loader;
