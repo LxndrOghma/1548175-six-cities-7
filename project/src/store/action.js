@@ -1,16 +1,21 @@
 const ActionType = {
   CHANGE_CITY: 'main/changeCity',
   CHANGE_SORT_TYPE: 'main/changeSortType',
+  LOAD_OFFERS: 'data/loadOffers',
 };
 
 const ActionCreator ={
   changeCity: (payload) => ({
     type: ActionType.CHANGE_CITY,
-    payload: payload,
+    payload,
   }),
   changeSortType: (payload) => ({
     type: ActionType.CHANGE_SORT_TYPE,
-    payload: payload,
+    payload,
+  }),
+  loadOffers: (payload) => ({
+    type: ActionType.LOAD_OFFERS,
+    payload,
   }),
 };
 
