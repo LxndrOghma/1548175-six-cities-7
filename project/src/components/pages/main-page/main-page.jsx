@@ -12,8 +12,9 @@ import { getSortedByCityOffersList, getSortedOffers } from '../../../utils';
 import { ActionCreator } from '../../../store/action';
 import EmptyMainPage from '../../empty-main-page/empty-main-page';
 import PlacesSorting from '../../sorting/places-sorting/places-sorting';
+import LoadWrapper from '../../loading/load-wrapper/load-wrapper';
 
-function MainPage({offers, city, onCityChange, onSortTypeChange}) {
+function MainPage({offers, city, onCityChange, onSortTypeChange, isDataLoaded}) {
   const [activeCard, setActiveCard] = useState('');
 
   if (!offers.length) {
@@ -24,32 +25,34 @@ function MainPage({offers, city, onCityChange, onSortTypeChange}) {
     <div className="page page--gray page--main">
       <Header />
 
-      <main className="page__main page__main--index">
-        <h1 className="visually-hidden">Cities</h1>
-        <CitiesList onCityChange={onCityChange} activeCity={city}/>
-        <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} {offers.length === 1 ? 'place' : 'places'} to stay in {city}</b>
-              <PlacesSorting onSortTypeChange={onSortTypeChange}/>
-              <OffersList
-                offers={offers}
-                setActiveCard={setActiveCard}
-                pageType={OffersListType.MAIN_PAGE}
-              />
-            </section>
-            <div className="cities__right-section">
-              <section className="cities__map map">
-                <Map
+      <LoadWrapper isDataLoaded={isDataLoaded}>
+        <main className="page__main page__main--index">
+          <h1 className="visually-hidden">Cities</h1>
+          <CitiesList onCityChange={onCityChange} activeCity={city}/>
+          <div className="cities">
+            <div className="cities__places-container container">
+              <section className="cities__places places">
+                <h2 className="visually-hidden">Places</h2>
+                <b className="places__found">{offers.length} {offers.length === 1 ? 'place' : 'places'} to stay in {city}</b>
+                <PlacesSorting onSortTypeChange={onSortTypeChange}/>
+                <OffersList
                   offers={offers}
-                  activeCard={activeCard}
+                  setActiveCard={setActiveCard}
+                  pageType={OffersListType.MAIN_PAGE}
                 />
               </section>
+              <div className="cities__right-section">
+                <section className="cities__map map">
+                  <Map
+                    offers={offers}
+                    activeCard={activeCard}
+                  />
+                </section>
+              </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </LoadWrapper>
     </div>
   );
 }
@@ -59,6 +62,7 @@ MainPage.propTypes = {
   city: PropTypes.string.isRequired,
   onCityChange: PropTypes.func.isRequired,
   onSortTypeChange: PropTypes.func.isRequired,
+  isDataLoaded: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -67,6 +71,7 @@ const mapStateToProps = (state) => {
   return ({
     city: state.city,
     offers: getSortedOffers(offers, state.sortType),
+    isDataLoaded: state.isDataLoaded,
   });
 };
 
