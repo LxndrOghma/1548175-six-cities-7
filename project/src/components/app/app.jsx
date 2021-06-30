@@ -9,11 +9,12 @@ import NotFoundPage from '../pages/not-found-page/not-found-page';
 import { AppRoute } from '../../const';
 
 function App() {
+
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path = {AppRoute.MAIN}>
-          <MainPage />
+          <MainPage/>
         </Route>
         <Route exact path = {AppRoute.LOGIN}>
           <SignInPage />

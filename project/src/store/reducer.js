@@ -1,10 +1,10 @@
-import { offers, nearestOffers } from '../mocks/offers';
+import { nearestOffers } from '../mocks/offers';
 import reviews from '../mocks/reviews';
 import { ActionType } from './action';
 
 const initialState = {
   city: 'Paris',
-  offers: offers,
+  offers: [],
   reviews: reviews,
   nearestOffers: nearestOffers,
   sortType: 'Popular',
@@ -21,6 +21,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         sortType: action.payload,
+      };
+    case ActionType.LOAD_OFFERS:
+      return {
+        ...state,
+        offers: action.payload,
+        isDataLoaded: true,
       };
     default:
       return state;

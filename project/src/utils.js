@@ -35,17 +35,19 @@ const sortHighToLowPrice = (arr) => arr.sort((a, b) => b.price - a.price);
 const sortByRating = (arr) => arr.sort((a, b) => b.rating - a.rating);
 
 const getSortedOffers = (offers, sortType) => {
+  const offersList = offers.slice();
+
   switch (sortType) {
     case SortingOptions.POPULAR:
-      return offers;
+      return offersList;
     case SortingOptions.LOW_TO_HIGH_PRICE:
-      return sortLowToHighPrice(offers);
+      return sortLowToHighPrice(offersList);
     case SortingOptions.HIGH_TO_LOW_PRICE:
-      return sortHighToLowPrice(offers);
+      return sortHighToLowPrice(offersList);
     case SortingOptions.TOP_RATED:
-      return sortByRating(offers);
+      return sortByRating(offersList);
     default:
-      return offers;
+      return offersList;
   }
 };
 
