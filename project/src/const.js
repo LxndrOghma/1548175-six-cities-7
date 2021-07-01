@@ -7,6 +7,8 @@ const AppRoute = {
 
 const APIRoute = {
   HOTELS: '/hotels',
+  LOGIN: '/login',
+  LOGOUT: '/logout',
 };
 
 const cities = [

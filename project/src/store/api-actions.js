@@ -1,5 +1,5 @@
 import { ActionCreator } from './action';
-import { APIRoute } from '../const';
+import { APIRoute, AuthorizationStatus } from '../const';
 import { getAdaptedOffer } from '../adapter/adapter';
 
 const fetchOffersList = () => (dispatch, _getState, api) => (
@@ -11,7 +11,28 @@ const fetchOffersList = () => (dispatch, _getState, api) => (
     .then(() => dispatch(ActionCreator.setLoadState(true)))
 );
 
+const checkAuth = () => (dispatch, _getState, api) => (
+  api.get(APIRoute.LOGIN)
+    .then(() => dispatch(ActionCreator.requiredAuthorization(AuthorizationStatus.AUTH)))
+    .catch(() => {})
+);
+
+const login = ({login: email, password}) => (dispatch, _getState, api) => (
+  api.post(APIRoute.LOGIN, {email, password})
+    .then(({data}) => localStorage.setItem('token', data.token))
+    .then(() => dispatch(ActionCreator.requiredAuthorization(AuthorizationStatus.AUTH())))
+);
+
+const logout = () => (dispatch, _getState, api) => (
+  api.delete(APIRoute.LOGOUT)
+    .then(() => localStorage.removeItem('token'))
+    .then(() => dispatch(ActionCreator.logout()))
+);
+
 export {
-  fetchOffersList
+  fetchOffersList,
+  checkAuth,
+  login,
+  logout
 };
 
