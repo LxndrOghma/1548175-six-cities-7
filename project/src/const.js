@@ -86,6 +86,9 @@ const AuthorizationStatus = {
   UNKNOWN: 'UNKNOWN',
 };
 
+const isCheckedAuth = (authorizationStatus) =>
+  authorizationStatus === AuthorizationStatus.UNKNOWN;
+
 export {
   AppRoute,
   APIRoute,
@@ -96,5 +99,6 @@ export {
   offersListSettings,
   cities,
   SortingOptions,
-  AuthorizationStatus
+  AuthorizationStatus,
+  isCheckedAuth
 };
