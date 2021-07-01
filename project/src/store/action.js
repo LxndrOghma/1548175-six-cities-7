@@ -3,6 +3,8 @@ const ActionType = {
   CHANGE_SORT_TYPE: 'main/changeSortType',
   LOAD_OFFERS: 'data/loadOffers',
   SET_LOAD_STATE: 'data/setLoadState',
+  REQUIED_AUTHORIZATION: 'user/requiredAuthorization',
+  LOGOUT: 'user/logout',
 };
 
 const ActionCreator ={
@@ -21,6 +23,13 @@ const ActionCreator ={
   setLoadState: (payload) => ({
     type: ActionType.SET_LOAD_STATE,
     payload,
+  }),
+  requiredAuthorization: (payload) => ({
+    type: ActionType.REQUIED_AUTHORIZATION,
+    payload,
+  }),
+  logout: () => ({
+    type: ActionType.LOGOUT,
   }),
 };
 

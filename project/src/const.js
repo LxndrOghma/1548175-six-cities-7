@@ -78,6 +78,12 @@ const SortingOptions = {
   TOP_RATED: 'Top rated first',
 };
 
+const AuthorizationStatus = {
+  AUTH: 'AUTH',
+  NO_AUTH: 'NO_AUTH',
+  UNKNOWN: 'UNKNOWN',
+};
+
 export {
   AppRoute,
   APIRoute,
@@ -87,5 +93,6 @@ export {
   OffersListType,
   offersListSettings,
   cities,
-  SortingOptions
+  SortingOptions,
+  AuthorizationStatus
 };
