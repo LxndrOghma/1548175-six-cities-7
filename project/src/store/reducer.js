@@ -8,6 +8,7 @@ const initialState = {
   reviews: reviews,
   nearestOffers: nearestOffers,
   sortType: 'Popular',
+  isDataLoaded: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -26,7 +27,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         offers: action.payload,
-        isDataLoaded: true,
+      };
+    case ActionType.SET_LOAD_STATE:
+      return {
+        ...state,
+        isDataLoaded: action.payload,
       };
     default:
       return state;

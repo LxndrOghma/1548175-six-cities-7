@@ -18,7 +18,7 @@ function MainPage({offers, city, onCityChange, onSortTypeChange, isDataLoaded}) 
   const [activeCard, setActiveCard] = useState('');
 
   if (!offers.length) {
-    return <EmptyMainPage onCityChange={onCityChange} city={city}/>;
+    return <EmptyMainPage onCityChange={onCityChange} city={city} isDataLoaded={isDataLoaded}/>;
   }
 
   return (
