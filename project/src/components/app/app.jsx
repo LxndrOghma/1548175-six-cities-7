@@ -7,22 +7,26 @@ import FavoritesPage from '../pages/favorites-page/favorites-page';
 import RoomPage from '../pages/room-page/room-page';
 import NotFoundPage from '../pages/not-found-page/not-found-page';
 import { AppRoute } from '../../const';
+import PrivateRoute from '../private-route/private-route';
 
 function App() {
 
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path = {AppRoute.MAIN}>
+        <Route exact path={AppRoute.MAIN}>
           <MainPage/>
         </Route>
-        <Route exact path = {AppRoute.LOGIN}>
+        <Route exact path={AppRoute.LOGIN}>
           <SignInPage />
         </Route>
-        <Route exact path = {AppRoute.FAVORITES}>
-          <FavoritesPage />
-        </Route>
-        <Route exact path = {AppRoute.ROOM}>
+        <PrivateRoute
+          exact
+          path={AppRoute.FAVORITES}
+          render={() => <FavoritesPage />}
+        >
+        </PrivateRoute>
+        <Route exact path={AppRoute.ROOM}>
           <RoomPage />
         </Route>
         <Route>

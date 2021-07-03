@@ -15,7 +15,7 @@ function Card({offer, setActiveCard, pageType}) {
         ${offersListSettings[pageType].classNameCardArticle}`
       }
       onMouseEnter={() => setActiveCard(id)}
-      onMouseLeave={() => setActiveCard('')}
+      onMouseLeave={() => setActiveCard(NaN)}
     >
       {isPremium &&
       <div className="place-card__mark">
