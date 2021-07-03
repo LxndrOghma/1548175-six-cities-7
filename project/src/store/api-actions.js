@@ -20,7 +20,7 @@ const checkAuth = () => (dispatch, _getState, api) => (
 const login = ({login: email, password}) => (dispatch, _getState, api) => (
   api.post(APIRoute.LOGIN, {email, password})
     .then(({data}) => localStorage.setItem('token', data.token))
-    .then(() => dispatch(ActionCreator.requiredAuthorization(AuthorizationStatus.AUTH())))
+    .then(() => dispatch(ActionCreator.requiredAuthorization(AuthorizationStatus.AUTH)))
 );
 
 const logout = () => (dispatch, _getState, api) => (
