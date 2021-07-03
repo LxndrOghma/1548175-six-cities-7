@@ -6,10 +6,17 @@ import { AppRoute } from '../../../const';
 import Header from '../../header/page-header/page-header';
 import { login } from '../../../store/api-actions';
 import { connect } from 'react-redux';
+import { validateEmail } from '../../../utils';
 
 function SignIn({onSubmit}) {
   const loginRef = useRef();
   const passwordRef = useRef();
+
+  const handleEmailInput = (evt) => {
+    !validateEmail(evt.target.value)
+      ? evt.target.setCustomValidity('Email введён не верно')
+      : evt.target.setCustomValidity('');
+  };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -43,6 +50,7 @@ function SignIn({onSubmit}) {
                   name="email"
                   placeholder="Email"
                   required
+                  onInput={handleEmailInput}
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
