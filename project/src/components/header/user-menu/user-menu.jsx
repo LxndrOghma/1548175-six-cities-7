@@ -1,28 +1,32 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { AppRoute } from '../../../const';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-function UserMenu() {
+import UserMenuSignedIn from '../user-menu-signed-in/user-menu-signed-in';
+import UserMenuNotLogged from '../user-menu-not-logged/user-munu-not-logged';
+import { AuthorizationStatus } from '../../../const';
+
+function UserMenu({authorizationStatus}) {
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
-        <li className="header__nav-item user">
-          <Link className="header__nav-link header__nav-link--profile" to={ AppRoute.MAIN }>
-            <div className="header__avatar-wrapper user__avatar-wrapper">
-            </div>
-            <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-          </Link>
-        </li>
-        <li className="header__nav-item user">
-          <Link className="header__nav-link header__nav-link--profile" to={ AppRoute.LOGIN }>
-            <div className="header__avatar-wrapper user__avatar-wrapper">
-            </div>
-            <span className="header__login">Sign in</span>
-          </Link>
-        </li>
+        {
+          authorizationStatus === AuthorizationStatus.AUTH
+            ? <UserMenuSignedIn />
+            : <UserMenuNotLogged />
+        }
       </ul>
     </nav>
   );
 }
 
-export default UserMenu;
+UserMenu.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  authorizationStatus: state.authorizationStatus,
+});
+
+export {UserMenu};
+export default connect(mapStateToProps)(UserMenu);

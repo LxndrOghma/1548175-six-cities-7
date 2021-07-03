@@ -1,4 +1,4 @@
-export const getAdaptedOffer = (offer) => {
+const getAdaptedOffer = (offer) => {
   const adaptedOffer = {
     ...offer,
     host: {
@@ -20,4 +20,22 @@ export const getAdaptedOffer = (offer) => {
   delete adaptedOffer.preview_image;
 
   return adaptedOffer;
+};
+
+const getAdaptedUser = (user) => {
+  const adaptedUser = {
+    ...user,
+    avatarUrl: user.avatar_url,
+    isPro: user.is_pro,
+  };
+
+  delete user.avatar_url;
+  delete user.is_pro;
+
+  return adaptedUser;
+};
+
+export {
+  getAdaptedOffer,
+  getAdaptedUser
 };

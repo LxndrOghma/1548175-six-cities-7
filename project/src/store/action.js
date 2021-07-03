@@ -5,7 +5,8 @@ const ActionType = {
   SET_LOAD_STATE: 'data/setLoadState',
   REQUIED_AUTHORIZATION: 'user/requiredAuthorization',
   LOGOUT: 'user/logout',
-  REDIRECT_TO_MAIN: 'route/redirectToMain',
+  SET_USER: 'user/setUser',
+  REDIRECT_TO_ROUTE: 'route/redirectToRoute',
 };
 
 const ActionCreator ={
@@ -32,8 +33,12 @@ const ActionCreator ={
   logout: () => ({
     type: ActionType.LOGOUT,
   }),
-  redirectToMain: (payload) => ({
-    type: ActionType.REDIRECT_TO_MAIN,
+  redirectToRoute: (payload) => ({
+    type: ActionType.REDIRECT_TO_ROUTE,
+    payload,
+  }),
+  setUser: (payload) => ({
+    type: ActionType.SET_USER,
     payload,
   }),
 };

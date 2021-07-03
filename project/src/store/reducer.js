@@ -11,6 +11,13 @@ const initialState = {
   sortType: 'Popular',
   isDataLoaded: false,
   authorizationStatus: AuthorizationStatus.UNKNOWN,
+  user: {
+    avatarUrl: '',
+    email: '',
+    id: null,
+    isPro: '',
+    name: '',
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -44,6 +51,17 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         authorizationStatus: AuthorizationStatus.NO_AUTH,
+      };
+    case ActionType.SET_USER:
+      return {
+        ...state,
+        user: {
+          avatarUrl: action.payload.avatarUrl,
+          email: action.payload.email,
+          id: action.payload.id,
+          isPro: action.payload.isPro,
+          name: action.payload.name,
+        },
       };
     default:
       return state;
