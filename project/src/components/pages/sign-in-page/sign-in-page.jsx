@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { AppRoute } from '../../../const';
@@ -10,8 +10,6 @@ import { connect } from 'react-redux';
 function SignIn({onSubmit}) {
   const loginRef = useRef();
   const passwordRef = useRef();
-
-  const history = useHistory();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -59,7 +57,6 @@ function SignIn({onSubmit}) {
                 />
               </div>
               <button
-                onClick={() => history.push(AppRoute.MAIN)}
                 className="login__submit form__submit button"
                 type="submit"
               >
