@@ -6,12 +6,13 @@ import PropTypes from 'prop-types';
 import { AppRoute } from '../../../const';
 import { logout } from '../../../store/api-actions';
 
-function UserMenuSignedIn({logoutAccount, userEmail}) {
+function UserMenuSignedIn({logoutAccount, userEmail, avatarUrl}) {
   return (
     <>
       <li className="header__nav-item user">
         <Link className="header__nav-link header__nav-link--profile" to={ AppRoute.FAVORITES }>
           <div className="header__avatar-wrapper user__avatar-wrapper">
+            <img src={avatarUrl} alt="User avatar" style={{borderRadius: '50%'}}/>
           </div>
           <span className="header__user-name user__name">{userEmail}</span>
         </Link>
@@ -35,10 +36,12 @@ function UserMenuSignedIn({logoutAccount, userEmail}) {
 UserMenuSignedIn.propTypes = {
   logoutAccount: PropTypes.func.isRequired,
   userEmail: PropTypes.string.isRequired,
+  avatarUrl: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   userEmail: state.user.email,
+  avatarUrl: state.user.avatarUrl,
 });
 
 const mapDispatchToProps = (dispatch) => ({
