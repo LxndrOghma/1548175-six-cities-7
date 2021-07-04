@@ -15,10 +15,10 @@ import PlacesSorting from '../../sorting/places-sorting/places-sorting';
 import LoadWrapper from '../../loading/load-wrapper/load-wrapper';
 
 function MainPage({offers, city, onCityChange, onSortTypeChange, isDataLoaded}) {
-  const [activeCard, setActiveCard] = useState('');
+  const [activeCard, setActiveCard] = useState(NaN);
 
   if (!offers.length) {
-    return <EmptyMainPage onCityChange={onCityChange} city={city}/>;
+    return <EmptyMainPage onCityChange={onCityChange} city={city} isDataLoaded={isDataLoaded}/>;
   }
 
   return (

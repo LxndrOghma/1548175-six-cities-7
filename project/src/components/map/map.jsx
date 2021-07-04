@@ -62,7 +62,7 @@ function Map({offers, activeCard}) {
 
 Map.propTypes = {
   offers: PropTypes.arrayOf(offersProp).isRequired,
-  activeCard: PropTypes.string.isRequired,
+  activeCard: PropTypes.number.isRequired,
 };
 
 export default Map;

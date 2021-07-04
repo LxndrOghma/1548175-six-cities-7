@@ -1,6 +1,7 @@
 import { nearestOffers } from '../mocks/offers';
 import reviews from '../mocks/reviews';
 import { ActionType } from './action';
+import { AuthorizationStatus } from '../const';
 
 const initialState = {
   city: 'Paris',
@@ -8,6 +9,15 @@ const initialState = {
   reviews: reviews,
   nearestOffers: nearestOffers,
   sortType: 'Popular',
+  isDataLoaded: false,
+  authorizationStatus: AuthorizationStatus.UNKNOWN,
+  user: {
+    avatarUrl: '',
+    email: '',
+    id: null,
+    isPro: '',
+    name: '',
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -26,7 +36,32 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         offers: action.payload,
-        isDataLoaded: true,
+      };
+    case ActionType.SET_LOAD_STATE:
+      return {
+        ...state,
+        isDataLoaded: action.payload,
+      };
+    case ActionType.REQUIED_AUTHORIZATION:
+      return {
+        ...state,
+        authorizationStatus: action.payload,
+      };
+    case ActionType.LOGOUT:
+      return {
+        ...state,
+        authorizationStatus: AuthorizationStatus.NO_AUTH,
+      };
+    case ActionType.SET_USER:
+      return {
+        ...state,
+        user: {
+          avatarUrl: action.payload.avatarUrl,
+          email: action.payload.email,
+          id: action.payload.id,
+          isPro: action.payload.isPro,
+          name: action.payload.name,
+        },
       };
     default:
       return state;

@@ -7,6 +7,8 @@ const AppRoute = {
 
 const APIRoute = {
   HOTELS: '/hotels',
+  LOGIN: '/login',
+  LOGOUT: '/logout',
 };
 
 const cities = [
@@ -78,6 +80,15 @@ const SortingOptions = {
   TOP_RATED: 'Top rated first',
 };
 
+const AuthorizationStatus = {
+  AUTH: 'AUTH',
+  NO_AUTH: 'NO_AUTH',
+  UNKNOWN: 'UNKNOWN',
+};
+
+const isCheckedAuth = (authorizationStatus) =>
+  authorizationStatus === AuthorizationStatus.UNKNOWN;
+
 export {
   AppRoute,
   APIRoute,
@@ -87,5 +98,7 @@ export {
   OffersListType,
   offersListSettings,
   cities,
-  SortingOptions
+  SortingOptions,
+  AuthorizationStatus,
+  isCheckedAuth
 };

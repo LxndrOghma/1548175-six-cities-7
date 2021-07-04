@@ -9,7 +9,7 @@ function LoadWrapper({isDataLoaded, children, Spinner = Loader}) {
 LoadWrapper.propTypes = {
   isDataLoaded: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
-  Spinner: PropTypes.node.isRequired,
+  Spinner: PropTypes.node,
 };
 
 export default LoadWrapper;
