@@ -56,10 +56,13 @@ const validateEmail = (email) => {
   return reg.test(email);
 };
 
+const getWordWithCapitalLetter = (word) => word.charAt(0).toUpperCase() + word.substr(1);
+
 export {
   getMonthYearFormatedDate,
   getNumericFormatedData,
   getSortedByCityOffersList,
   getSortedOffers,
-  validateEmail
+  validateEmail,
+  getWordWithCapitalLetter
 };
