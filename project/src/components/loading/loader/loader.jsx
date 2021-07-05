@@ -2,7 +2,8 @@ import React from 'react';
 import { RingSpinner } from 'react-spinners-kit';
 
 const style = {
-  margin: '0 auto',
+  display: 'flex',
+  justifyContent: 'center',
 };
 
 function Loader() {

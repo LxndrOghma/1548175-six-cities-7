@@ -6,10 +6,12 @@ import { AuthorizationStatus } from '../const';
 const initialState = {
   city: 'Paris',
   offers: [],
+  currentOffer: {},
   reviews: reviews,
   nearestOffers: nearestOffers,
   sortType: 'Popular',
-  isDataLoaded: false,
+  isOffersLoaded: false,
+  isCurrentOfferLoaded: false,
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   user: {
     avatarUrl: '',
@@ -37,10 +39,20 @@ const reducer = (state = initialState, action) => {
         ...state,
         offers: action.payload,
       };
-    case ActionType.SET_LOAD_STATE:
+    case ActionType.LOAD_OFFER:
       return {
         ...state,
-        isDataLoaded: action.payload,
+        currentOffer: action.payload,
+      };
+    case ActionType.SET_OFFERS_LOAD_STATE:
+      return {
+        ...state,
+        isOffersLoaded: action.payload,
+      };
+    case ActionType.SET_CURRENT_OFFER_LOAD_STATE:
+      return {
+        ...state,
+        isCurrentOfferLoaded: action.payload,
       };
     case ActionType.REQUIED_AUTHORIZATION:
       return {

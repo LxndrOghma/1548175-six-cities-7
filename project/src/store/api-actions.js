@@ -8,7 +8,17 @@ const fetchOffersList = () => (dispatch, _getState, api) => (
       const offers = data.map((offer) => getAdaptedOffer(offer));
       dispatch(ActionCreator.loadOffers(offers));
     })
-    .then(() => dispatch(ActionCreator.setLoadState(true)))
+    .then(() => dispatch(ActionCreator.setOffersLoadState(true)))
+);
+
+const fetchCurrentOffer = (id) => (dispatch, _getState, api) => (
+  api.get(`${APIRoute.HOTELS}/${id}`)
+    .then(({data}) => {
+      const offer = getAdaptedOffer(data);
+      dispatch(ActionCreator.loadOffer(offer));
+    })
+    .then(() => dispatch(ActionCreator.setCurrentOfferLoadState(true)))
+    .catch(() => dispatch(ActionCreator.redirectToRoute(AppRoute.NOT_FOUND)))
 );
 
 const checkAuth = () => (dispatch, _getState, api) => (
@@ -37,6 +47,7 @@ const logout = () => (dispatch, _getState, api) => (
 
 export {
   fetchOffersList,
+  fetchCurrentOffer,
   checkAuth,
   login,
   logout
