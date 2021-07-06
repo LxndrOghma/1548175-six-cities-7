@@ -1,5 +1,4 @@
 import { nearestOffers } from '../mocks/offers';
-import reviews from '../mocks/reviews';
 import { ActionType } from './action';
 import { AuthorizationStatus } from '../const';
 
@@ -7,11 +6,12 @@ const initialState = {
   city: 'Paris',
   offers: [],
   currentOffer: {},
-  reviews: reviews,
+  reviews: [],
   nearestOffers: nearestOffers,
   sortType: 'Popular',
   isOffersLoaded: false,
   isCurrentOfferLoaded: false,
+  isCommentsLoaded: false,
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   user: {
     avatarUrl: '',
@@ -43,6 +43,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentOffer: action.payload,
+      };
+    case ActionType.LOAD_COMMENTS:
+      return {
+        ...state,
+        reviews: action.payload,
       };
     case ActionType.SET_OFFERS_LOAD_STATE:
       return {

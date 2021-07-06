@@ -3,8 +3,10 @@ const ActionType = {
   CHANGE_SORT_TYPE: 'main/changeSortType',
   LOAD_OFFERS: 'data/loadOffers',
   LOAD_OFFER: 'data/loadOffer',
+  LOAD_COMMENTS: 'data/loadComments',
   SET_OFFERS_LOAD_STATE: 'data/setOffersLoadState',
   SET_CURRENT_OFFER_LOAD_STATE: 'data/setCurrentOfferLoadState',
+  SET_COMMENTS_LOAD_STATE: 'data/setCommentsLoadState',
   REQUIED_AUTHORIZATION: 'user/requiredAuthorization',
   LOGOUT: 'user/logout',
   SET_USER: 'user/setUser',
@@ -28,12 +30,20 @@ const ActionCreator ={
     type: ActionType.LOAD_OFFER,
     payload,
   }),
+  loadComments: (payload) => ({
+    type: ActionType.LOAD_COMMENTS,
+    payload,
+  }),
   setOffersLoadState: (payload) => ({
     type: ActionType.SET_OFFERS_LOAD_STATE,
     payload,
   }),
   setCurrentOfferLoadState: (payload) => ({
     type: ActionType.SET_CURRENT_OFFER_LOAD_STATE,
+    payload,
+  }),
+  setCommentsLoadState: (payload) => ({
+    type: ActionType.SET_COMMENTS_LOAD_STATE,
     payload,
   }),
   requiredAuthorization: (payload) => ({

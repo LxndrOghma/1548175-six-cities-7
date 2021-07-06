@@ -1,6 +1,6 @@
 import { ActionCreator } from './action';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
-import { getAdaptedOffer, getAdaptedUser } from '../adapter/adapter';
+import { getAdaptedComment, getAdaptedOffer, getAdaptedUser } from '../adapter/adapter';
 
 const fetchOffersList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.HOTELS)
@@ -19,6 +19,15 @@ const fetchCurrentOffer = (id) => (dispatch, _getState, api) => (
     })
     .then(() => dispatch(ActionCreator.setCurrentOfferLoadState(true)))
     .catch(() => dispatch(ActionCreator.redirectToRoute(AppRoute.NOT_FOUND)))
+);
+
+const fetchComments = (id) => (dispatch, _getState, api) => (
+  api.get(`${APIRoute.COMMENTS}${id}`)
+    .then(({data}) => {
+      const comments = data.map((comment) => getAdaptedComment(comment));
+      dispatch(ActionCreator.loadComments(comments));
+    })
+    .then(() => dispatch(ActionCreator.setCommentsLoadState(true)))
 );
 
 const checkAuth = () => (dispatch, _getState, api) => (
@@ -48,6 +57,7 @@ const logout = () => (dispatch, _getState, api) => (
 export {
   fetchOffersList,
   fetchCurrentOffer,
+  fetchComments,
   checkAuth,
   login,
   logout

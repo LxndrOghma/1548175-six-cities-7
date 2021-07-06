@@ -35,7 +35,24 @@ const getAdaptedUser = (user) => {
   return adaptedUser;
 };
 
+const getAdaptedComment = (comment) => {
+  const adaptedComment = {
+    ...comment,
+    user: {
+      ...comment.user,
+      avatarUrl: comment.user.avatar_url,
+      isPro: comment.user.is_pro,
+    },
+  };
+
+  delete comment.user.avatar_url;
+  delete comment.user.is_pro;
+
+  return adaptedComment;
+};
+
 export {
   getAdaptedOffer,
-  getAdaptedUser
+  getAdaptedUser,
+  getAdaptedComment
 };

@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 
 import Header from '../../header/page-header/page-header';
 import ReviewsSection from '../../reviews/reviews-section/reviews-section';
-import reviewsProp from '../../props/reviews.prop';
 import offersProp from '../../props/offers.prop';
 import Map from '../../map/map';
 import OffersList from '../../offers/offers-list/offers-list';
@@ -18,7 +17,7 @@ import { fetchCurrentOffer } from '../../../store/api-actions';
 import LoadWrapper from '../../loading/load-wrapper/load-wrapper';
 import PropertyHost from '../../property/property-host/property-host';
 
-function Room({reviews, nearestOffers, currentOffer, isCurrentOfferLoaded}) {
+function Room({nearestOffers, currentOffer, isCurrentOfferLoaded}) {
   const [activeCard, setActiveCard] = useState(NaN);
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -94,7 +93,7 @@ function Room({reviews, nearestOffers, currentOffer, isCurrentOfferLoaded}) {
                 </div>
                 {goods && <GoodsList goods={goods} />}
                 {host && <PropertyHost host={host} description={description} />}
-                <ReviewsSection reviews={reviews}/>
+                <ReviewsSection />
               </div>
             </div>
             <section className="property__map map">
@@ -118,7 +117,6 @@ function Room({reviews, nearestOffers, currentOffer, isCurrentOfferLoaded}) {
 }
 
 Room.propTypes = {
-  reviews: PropTypes.arrayOf(reviewsProp).isRequired,
   nearestOffers: PropTypes.arrayOf(offersProp).isRequired,
   currentOffer: offersProp,
   isCurrentOfferLoaded: PropTypes.bool.isRequired,
@@ -127,7 +125,6 @@ Room.propTypes = {
 const mapStateToProps = (state) => ({
   isCurrentOfferLoaded: state.isCurrentOfferLoaded,
   currentOffer: state.currentOffer,
-  reviews: state.reviews,
   nearestOffers: state.nearestOffers,
 });
 

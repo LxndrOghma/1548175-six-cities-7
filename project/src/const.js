@@ -10,6 +10,7 @@ const APIRoute = {
   HOTELS: '/hotels',
   LOGIN: '/login',
   LOGOUT: '/logout',
+  COMMENTS: '/comments/',
 };
 
 const cities = [
