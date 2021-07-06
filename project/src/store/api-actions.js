@@ -30,6 +30,15 @@ const fetchComments = (id) => (dispatch, _getState, api) => (
     .then(() => dispatch(ActionCreator.setCommentsLoadState(true)))
 );
 
+const fetchNearbyOffers = (id) => (dispatch, _getState, api) => (
+  api.get(`${APIRoute.HOTELS}/${id}/nearby`)
+    .then(({data}) => {
+      const offers = data.map((offer) => getAdaptedOffer(offer));
+      dispatch(ActionCreator.loadNearbyOffers(offers));
+    })
+    .then(() => dispatch(ActionCreator.setNearbyOffersLoadState(true)))
+);
+
 const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
     .then(({data}) => dispatch(ActionCreator.setUser(getAdaptedUser(data))))
@@ -58,6 +67,7 @@ export {
   fetchOffersList,
   fetchCurrentOffer,
   fetchComments,
+  fetchNearbyOffers,
   checkAuth,
   login,
   logout

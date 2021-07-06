@@ -13,17 +13,18 @@ import PremiumMark from '../../property/premium-mark/premium-mark';
 import ImagesList from '../../property/images-list/images-list';
 import { getWordWithCapitalLetter } from '../../../utils';
 import GoodsList from '../../property/goods-list/goods-list';
-import { fetchCurrentOffer } from '../../../store/api-actions';
+import { fetchCurrentOffer, fetchNearbyOffers } from '../../../store/api-actions';
 import LoadWrapper from '../../loading/load-wrapper/load-wrapper';
 import PropertyHost from '../../property/property-host/property-host';
 
-function Room({nearestOffers, currentOffer, isCurrentOfferLoaded}) {
+function Room({nearbyOffers, currentOffer, isCurrentOfferLoaded}) {
   const [activeCard, setActiveCard] = useState(NaN);
   const { id } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchCurrentOffer(id));
+    dispatch(fetchNearbyOffers(id));
   }, [id, dispatch]);
 
   const {
@@ -98,14 +99,14 @@ function Room({nearestOffers, currentOffer, isCurrentOfferLoaded}) {
             </div>
             <section className="property__map map">
               <Map
-                offers={nearestOffers}
+                offers={nearbyOffers}
                 activeCard={activeCard}
               />
             </section>
           </section>
           <div className="container">
             <OffersList
-              offers={nearestOffers}
+              offers={nearbyOffers}
               setActiveCard={setActiveCard}
               pageType={OffersListType.ROOM_PAGE}
             />
@@ -117,7 +118,7 @@ function Room({nearestOffers, currentOffer, isCurrentOfferLoaded}) {
 }
 
 Room.propTypes = {
-  nearestOffers: PropTypes.arrayOf(offersProp).isRequired,
+  nearbyOffers: PropTypes.arrayOf(offersProp).isRequired,
   currentOffer: offersProp,
   isCurrentOfferLoaded: PropTypes.bool.isRequired,
 };
@@ -125,7 +126,7 @@ Room.propTypes = {
 const mapStateToProps = (state) => ({
   isCurrentOfferLoaded: state.isCurrentOfferLoaded,
   currentOffer: state.currentOffer,
-  nearestOffers: state.nearestOffers,
+  nearbyOffers: state.nearbyOffers,
 });
 
 export { Room };

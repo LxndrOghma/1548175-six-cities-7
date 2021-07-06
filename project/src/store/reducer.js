@@ -1,4 +1,3 @@
-import { nearestOffers } from '../mocks/offers';
 import { ActionType } from './action';
 import { AuthorizationStatus } from '../const';
 
@@ -7,11 +6,12 @@ const initialState = {
   offers: [],
   currentOffer: {},
   reviews: [],
-  nearestOffers: nearestOffers,
+  nearbyOffers: [],
   sortType: 'Popular',
   isOffersLoaded: false,
   isCurrentOfferLoaded: false,
   isCommentsLoaded: false,
+  isNearbyOffersLoaded: false,
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   user: {
     avatarUrl: '',
@@ -49,6 +49,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         reviews: action.payload,
       };
+    case ActionType.LOAD_NEARBY_OFFERS:
+      return {
+        ...state,
+        nearbyOffers: action.payload,
+      };
     case ActionType.SET_OFFERS_LOAD_STATE:
       return {
         ...state,
@@ -58,6 +63,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isCurrentOfferLoaded: action.payload,
+      };
+    case ActionType.SET_COMMENTS_LOAD_STATE:
+      return {
+        ...state,
+        isCommentsLoaded: action.payload,
+      };
+    case ActionType.SET_NEARBY_OFFERS_LOAD_STATE:
+      return {
+        ...state,
+        isNearbyOffersLoaded: action.payload,
       };
     case ActionType.REQUIED_AUTHORIZATION:
       return {
