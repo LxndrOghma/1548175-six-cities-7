@@ -20,6 +20,7 @@ const initialState = {
     isPro: '',
     name: '',
   },
+  isCommentPosted: true,
 };
 
 const reducer = (state = initialState, action) => {
@@ -73,6 +74,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isNearbyOffersLoaded: action.payload,
+      };
+    case ActionType.SET_IS_COMMENT_POSTED:
+      return {
+        ...state,
+        isCommentPosted: action.payload,
       };
     case ActionType.REQUIED_AUTHORIZATION:
       return {

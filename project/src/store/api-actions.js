@@ -30,6 +30,19 @@ const fetchComments = (id) => (dispatch, _getState, api) => (
     .then(() => dispatch(ActionCreator.setCommentsLoadState(true)))
 );
 
+const sendComment = ({id, comment, rating}) => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.setCommentsLoadState(false));
+  dispatch(ActionCreator.setIsCommentPosted(false));
+  return api.post(`${APIRoute.COMMENTS}${id}`, {comment, rating})
+    .then((response) => {
+      const { data } = response;
+      const comments = data.map((loadedComment) => getAdaptedComment(loadedComment));
+      dispatch(ActionCreator.loadComments(comments));
+      dispatch(ActionCreator.setCommentsLoadState(true));
+      dispatch(ActionCreator.setIsCommentPosted(true));
+    });
+};
+
 const fetchNearbyOffers = (id) => (dispatch, _getState, api) => (
   api.get(`${APIRoute.HOTELS}/${id}/nearby`)
     .then(({data}) => {
@@ -67,6 +80,7 @@ export {
   fetchOffersList,
   fetchCurrentOffer,
   fetchComments,
+  sendComment,
   fetchNearbyOffers,
   checkAuth,
   login,

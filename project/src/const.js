@@ -88,8 +88,13 @@ const AuthorizationStatus = {
   UNKNOWN: 'UNKNOWN',
 };
 
-const isCheckedAuth = (authorizationStatus) =>
-  authorizationStatus === AuthorizationStatus.UNKNOWN;
+const CommentFormSettings ={
+  MIN_CHARACTERS_COUNT: 50,
+  MAX_CHARACTERS_COUNT: 300,
+};
+
+const isUserAuthorized = (authorizationStatus) =>
+  authorizationStatus === AuthorizationStatus.AUTH;
 
 export {
   AppRoute,
@@ -102,5 +107,6 @@ export {
   cities,
   SortingOptions,
   AuthorizationStatus,
-  isCheckedAuth
+  isUserAuthorized,
+  CommentFormSettings
 };

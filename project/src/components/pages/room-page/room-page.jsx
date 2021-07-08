@@ -8,16 +8,16 @@ import ReviewsSection from '../../reviews/reviews-section/reviews-section';
 import offersProp from '../../props/offers.prop';
 import Map from '../../map/map';
 import OffersList from '../../offers/offers-list/offers-list';
-import { OffersListType } from '../../../const';
+import { isCheckedAuth, isUserAuthorized, OffersListType } from '../../../const';
 import PremiumMark from '../../property/premium-mark/premium-mark';
 import ImagesList from '../../property/images-list/images-list';
 import { getWordWithCapitalLetter } from '../../../utils';
 import GoodsList from '../../property/goods-list/goods-list';
-import { fetchCurrentOffer, fetchNearbyOffers } from '../../../store/api-actions';
+import { checkAuth, fetchCurrentOffer, fetchNearbyOffers } from '../../../store/api-actions';
 import LoadWrapper from '../../loading/load-wrapper/load-wrapper';
 import PropertyHost from '../../property/property-host/property-host';
 
-function Room({nearbyOffers, currentOffer, isCurrentOfferLoaded}) {
+function Room({nearbyOffers, currentOffer, isCurrentOfferLoaded, authorizationStatus}) {
   const [activeCard, setActiveCard] = useState(NaN);
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -94,14 +94,14 @@ function Room({nearbyOffers, currentOffer, isCurrentOfferLoaded}) {
                 </div>
                 {goods && <GoodsList goods={goods} />}
                 {host && <PropertyHost host={host} description={description} />}
-                <ReviewsSection />
+                {isUserAuthorized(authorizationStatus) && <ReviewsSection />}
               </div>
             </div>
             <section className="property__map map">
-              <Map
+              {/* <Map
                 offers={nearbyOffers}
                 activeCard={activeCard}
-              />
+              /> */}
             </section>
           </section>
           <div className="container">
@@ -121,12 +121,14 @@ Room.propTypes = {
   nearbyOffers: PropTypes.arrayOf(offersProp).isRequired,
   currentOffer: offersProp,
   isCurrentOfferLoaded: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isCurrentOfferLoaded: state.isCurrentOfferLoaded,
   currentOffer: state.currentOffer,
   nearbyOffers: state.nearbyOffers,
+  authorizationStatus: state.authorizationStatus,
 });
 
 export { Room };

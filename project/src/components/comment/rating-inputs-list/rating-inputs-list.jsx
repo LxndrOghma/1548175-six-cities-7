@@ -7,7 +7,7 @@ import { ratings } from '../../../const';
 function RatingInputsList({comment, setComment}) {
   return (
     <div className="reviews__rating-form form__rating">
-      {ratings.map((rating) => <RatingInput key={rating} comment={comment} setComment={setComment} starsCount={rating}/>)}
+      {ratings.map((rating) => <RatingInput key={rating} comment={comment} setComment={setComment} starsCount={rating} isChecked={comment.rating === rating}/>)}
     </div>
   );
 }

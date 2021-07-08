@@ -8,6 +8,7 @@ const ActionType = {
   SET_OFFERS_LOAD_STATE: 'data/setOffersLoadState',
   SET_CURRENT_OFFER_LOAD_STATE: 'data/setCurrentOfferLoadState',
   SET_COMMENTS_LOAD_STATE: 'data/setCommentsLoadState',
+  SET_IS_COMMENT_POSTED: 'data/setIsCommentPosted',
   SET_NEARBY_OFFERS_LOAD_STATE: 'data/setNearbyOffersLoadState',
   REQUIED_AUTHORIZATION: 'user/requiredAuthorization',
   LOGOUT: 'user/logout',
@@ -50,6 +51,10 @@ const ActionCreator ={
   }),
   setCommentsLoadState: (payload) => ({
     type: ActionType.SET_COMMENTS_LOAD_STATE,
+    payload,
+  }),
+  setIsCommentPosted: (payload) => ({
+    type: ActionType.SET_IS_COMMENT_POSTED,
     payload,
   }),
   setNearbyOffersLoadState: (payload) => ({
