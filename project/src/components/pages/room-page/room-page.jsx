@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -8,19 +8,20 @@ import ReviewsSection from '../../reviews/reviews-section/reviews-section';
 import offersProp from '../../props/offers.prop';
 import Map from '../../map/map';
 import OffersList from '../../offers/offers-list/offers-list';
-import { isCheckedAuth, isUserAuthorized, OffersListType } from '../../../const';
+import { isUserAuthorized, OffersListType } from '../../../const';
 import PremiumMark from '../../property/premium-mark/premium-mark';
 import ImagesList from '../../property/images-list/images-list';
 import { getWordWithCapitalLetter } from '../../../utils';
 import GoodsList from '../../property/goods-list/goods-list';
-import { checkAuth, fetchCurrentOffer, fetchNearbyOffers } from '../../../store/api-actions';
+import { fetchCurrentOffer, fetchNearbyOffers } from '../../../store/api-actions';
 import LoadWrapper from '../../loading/load-wrapper/load-wrapper';
 import PropertyHost from '../../property/property-host/property-host';
 
 function Room({nearbyOffers, currentOffer, isCurrentOfferLoaded, authorizationStatus}) {
-  const [activeCard, setActiveCard] = useState(NaN);
   const { id } = useParams();
   const dispatch = useDispatch();
+
+  const offersForMap = [currentOffer, ...nearbyOffers];
 
   useEffect(() => {
     dispatch(fetchCurrentOffer(id));
@@ -98,16 +99,15 @@ function Room({nearbyOffers, currentOffer, isCurrentOfferLoaded, authorizationSt
               </div>
             </div>
             <section className="property__map map">
-              {/* <Map
-                offers={nearbyOffers}
-                activeCard={activeCard}
-              /> */}
+              <Map
+                offers={offersForMap}
+                activeCard={currentOffer.id}
+              />
             </section>
           </section>
           <div className="container">
             <OffersList
               offers={nearbyOffers}
-              setActiveCard={setActiveCard}
               pageType={OffersListType.ROOM_PAGE}
             />
           </div>

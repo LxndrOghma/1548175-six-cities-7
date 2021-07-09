@@ -43,6 +43,13 @@ function Map({offers, activeCard}) {
         markers.addLayer(marker);
       });
       markers.addTo(map);
+
+      map.flyTo([
+        offers[0].city.location.latitude,
+        offers[0].city.location.longitude,
+      ],
+      offers[0].city.location.zoom,
+      );
     }
 
     return () => {
