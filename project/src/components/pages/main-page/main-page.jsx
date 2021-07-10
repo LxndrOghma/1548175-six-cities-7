@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 
 import Header from '../../header/page-header/page-header';
 import { OffersListType } from '../../../const';
@@ -13,19 +13,25 @@ import { ActionCreator } from '../../../store/action';
 import EmptyMainPage from '../../empty-main-page/empty-main-page';
 import PlacesSorting from '../../sorting/places-sorting/places-sorting';
 import LoadWrapper from '../../loading/load-wrapper/load-wrapper';
+import { fetchOffersList } from '../../../store/api-actions';
 
-function MainPage({offers, city, onCityChange, onSortTypeChange, isDataLoaded}) {
+function MainPage({offers, city, onCityChange, onSortTypeChange, isOffersLoaded}) {
   const [activeCard, setActiveCard] = useState(NaN);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchOffersList());
+  }, [dispatch]);
 
   if (!offers.length) {
-    return <EmptyMainPage onCityChange={onCityChange} city={city} isDataLoaded={isDataLoaded}/>;
+    return <EmptyMainPage onCityChange={onCityChange} city={city} isDataLoaded={isOffersLoaded}/>;
   }
 
   return (
     <div className="page page--gray page--main">
       <Header />
 
-      <LoadWrapper isDataLoaded={isDataLoaded}>
+      <LoadWrapper isDataLoaded={isOffersLoaded}>
         <main className="page__main page__main--index">
           <h1 className="visually-hidden">Cities</h1>
           <CitiesList onCityChange={onCityChange} activeCity={city}/>
@@ -62,7 +68,7 @@ MainPage.propTypes = {
   city: PropTypes.string.isRequired,
   onCityChange: PropTypes.func.isRequired,
   onSortTypeChange: PropTypes.func.isRequired,
-  isDataLoaded: PropTypes.bool.isRequired,
+  isOffersLoaded: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -71,7 +77,7 @@ const mapStateToProps = (state) => {
   return ({
     city: state.city,
     offers: getSortedOffers(offers, state.sortType),
-    isDataLoaded: state.isDataLoaded,
+    isOffersLoaded: state.isOffersLoaded,
   });
 };
 

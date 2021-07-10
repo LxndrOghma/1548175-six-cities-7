@@ -1,15 +1,17 @@
-import { nearestOffers } from '../mocks/offers';
-import reviews from '../mocks/reviews';
 import { ActionType } from './action';
 import { AuthorizationStatus } from '../const';
 
 const initialState = {
   city: 'Paris',
   offers: [],
-  reviews: reviews,
-  nearestOffers: nearestOffers,
+  currentOffer: {},
+  reviews: [],
+  nearbyOffers: [],
   sortType: 'Popular',
-  isDataLoaded: false,
+  isOffersLoaded: false,
+  isCurrentOfferLoaded: false,
+  isCommentsLoaded: false,
+  isNearbyOffersLoaded: false,
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   user: {
     avatarUrl: '',
@@ -18,6 +20,7 @@ const initialState = {
     isPro: '',
     name: '',
   },
+  isCommentPosted: true,
 };
 
 const reducer = (state = initialState, action) => {
@@ -37,10 +40,45 @@ const reducer = (state = initialState, action) => {
         ...state,
         offers: action.payload,
       };
-    case ActionType.SET_LOAD_STATE:
+    case ActionType.LOAD_OFFER:
       return {
         ...state,
-        isDataLoaded: action.payload,
+        currentOffer: action.payload,
+      };
+    case ActionType.LOAD_COMMENTS:
+      return {
+        ...state,
+        reviews: action.payload,
+      };
+    case ActionType.LOAD_NEARBY_OFFERS:
+      return {
+        ...state,
+        nearbyOffers: action.payload,
+      };
+    case ActionType.SET_OFFERS_LOAD_STATE:
+      return {
+        ...state,
+        isOffersLoaded: action.payload,
+      };
+    case ActionType.SET_CURRENT_OFFER_LOAD_STATE:
+      return {
+        ...state,
+        isCurrentOfferLoaded: action.payload,
+      };
+    case ActionType.SET_COMMENTS_LOAD_STATE:
+      return {
+        ...state,
+        isCommentsLoaded: action.payload,
+      };
+    case ActionType.SET_NEARBY_OFFERS_LOAD_STATE:
+      return {
+        ...state,
+        isNearbyOffersLoaded: action.payload,
+      };
+    case ActionType.SET_IS_COMMENT_POSTED:
+      return {
+        ...state,
+        isCommentPosted: action.payload,
       };
     case ActionType.REQUIED_AUTHORIZATION:
       return {

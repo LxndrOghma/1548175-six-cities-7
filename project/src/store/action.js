@@ -2,7 +2,14 @@ const ActionType = {
   CHANGE_CITY: 'main/changeCity',
   CHANGE_SORT_TYPE: 'main/changeSortType',
   LOAD_OFFERS: 'data/loadOffers',
-  SET_LOAD_STATE: 'data/setLoadState',
+  LOAD_OFFER: 'data/loadOffer',
+  LOAD_COMMENTS: 'data/loadComments',
+  LOAD_NEARBY_OFFERS: 'data/loadNearbyOffers',
+  SET_OFFERS_LOAD_STATE: 'data/setOffersLoadState',
+  SET_CURRENT_OFFER_LOAD_STATE: 'data/setCurrentOfferLoadState',
+  SET_COMMENTS_LOAD_STATE: 'data/setCommentsLoadState',
+  SET_IS_COMMENT_POSTED: 'data/setIsCommentPosted',
+  SET_NEARBY_OFFERS_LOAD_STATE: 'data/setNearbyOffersLoadState',
   REQUIED_AUTHORIZATION: 'user/requiredAuthorization',
   LOGOUT: 'user/logout',
   SET_USER: 'user/setUser',
@@ -22,8 +29,36 @@ const ActionCreator ={
     type: ActionType.LOAD_OFFERS,
     payload,
   }),
-  setLoadState: (payload) => ({
-    type: ActionType.SET_LOAD_STATE,
+  loadOffer: (payload) => ({
+    type: ActionType.LOAD_OFFER,
+    payload,
+  }),
+  loadComments: (payload) => ({
+    type: ActionType.LOAD_COMMENTS,
+    payload,
+  }),
+  loadNearbyOffers: (payload) => ({
+    type: ActionType.LOAD_NEARBY_OFFERS,
+    payload,
+  }),
+  setOffersLoadState: (payload) => ({
+    type: ActionType.SET_OFFERS_LOAD_STATE,
+    payload,
+  }),
+  setCurrentOfferLoadState: (payload) => ({
+    type: ActionType.SET_CURRENT_OFFER_LOAD_STATE,
+    payload,
+  }),
+  setCommentsLoadState: (payload) => ({
+    type: ActionType.SET_COMMENTS_LOAD_STATE,
+    payload,
+  }),
+  setIsCommentPosted: (payload) => ({
+    type: ActionType.SET_IS_COMMENT_POSTED,
+    payload,
+  }),
+  setNearbyOffersLoadState: (payload) => ({
+    type: ActionType.SET_NEARBY_OFFERS_LOAD_STATE,
     payload,
   }),
   requiredAuthorization: (payload) => ({

@@ -3,12 +3,14 @@ const AppRoute = {
   LOGIN: '/login',
   FAVORITES: '/favorites',
   ROOM: '/offer/:id',
+  NOT_FOUND: '/404page',
 };
 
 const APIRoute = {
   HOTELS: '/hotels',
   LOGIN: '/login',
   LOGOUT: '/logout',
+  COMMENTS: '/comments/',
 };
 
 const cities = [
@@ -86,8 +88,13 @@ const AuthorizationStatus = {
   UNKNOWN: 'UNKNOWN',
 };
 
-const isCheckedAuth = (authorizationStatus) =>
-  authorizationStatus === AuthorizationStatus.UNKNOWN;
+const CommentFormSettings ={
+  MIN_CHARACTERS_COUNT: 50,
+  MAX_CHARACTERS_COUNT: 300,
+};
+
+const isUserAuthorized = (authorizationStatus) =>
+  authorizationStatus === AuthorizationStatus.AUTH;
 
 export {
   AppRoute,
@@ -100,5 +107,6 @@ export {
   cities,
   SortingOptions,
   AuthorizationStatus,
-  isCheckedAuth
+  isUserAuthorized,
+  CommentFormSettings
 };

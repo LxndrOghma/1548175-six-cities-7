@@ -5,7 +5,7 @@ import Card from '../offer-card/offer-card';
 import offersProp from '../../props/offers.prop';
 import { offersListSettings } from '../../../const';
 
-function OffersList({offers, setActiveCard, pageType}) {
+function OffersList({offers, setActiveCard = () => {}, pageType}) {
   return (
     <div className={
       `places__list
@@ -19,7 +19,7 @@ function OffersList({offers, setActiveCard, pageType}) {
 
 OffersList.propTypes = {
   offers: PropTypes.arrayOf(offersProp).isRequired,
-  setActiveCard: PropTypes.func.isRequired,
+  setActiveCard: PropTypes.func,
   pageType: PropTypes.string.isRequired,
 };
 
