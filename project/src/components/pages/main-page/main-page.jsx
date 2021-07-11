@@ -9,7 +9,7 @@ import OffersList from '../../offers/offers-list/offers-list';
 import Map from '../../map/map';
 import CitiesList from '../../cities/cities-list/cities-list';
 import { getSortedByCityOffersList, getSortedOffers } from '../../../utils';
-import { ActionCreator } from '../../../store/action';
+import { changeCity, changeSortType } from '../../../store/action';
 import EmptyMainPage from '../../empty-main-page/empty-main-page';
 import PlacesSorting from '../../sorting/places-sorting/places-sorting';
 import LoadWrapper from '../../loading/load-wrapper/load-wrapper';
@@ -83,10 +83,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   onCityChange(evt) {
-    dispatch(ActionCreator.changeCity(evt.target.textContent));
+    dispatch(changeCity(evt.target.textContent));
   },
   onSortTypeChange(evt) {
-    dispatch(ActionCreator.changeSortType(evt.target.textContent));
+    dispatch(changeSortType(evt.target.textContent));
   },
 });
 
