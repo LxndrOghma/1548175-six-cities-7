@@ -5,12 +5,11 @@ import RatingInputsList from '../rating-inputs-list/rating-inputs-list';
 import { CommentFormSettings } from '../../../const';
 import { connect, useDispatch } from 'react-redux';
 import { sendComment } from '../../../store/api-actions';
-import { useParams } from 'react-router-dom';
 
-function CommentForm({isCommentPosted}) {
+function CommentForm({isCommentPosted, id}) {
   const [ comment, setComment ] = useState({rating: 0, text: ''});
   const [ isDisabled, setIsDisabled] = useState(true);
-  const { id } = useParams();
+
 
   const dispatch = useDispatch();
 
@@ -52,6 +51,7 @@ function CommentForm({isCommentPosted}) {
 
 CommentForm.propTypes = {
   isCommentPosted: PropTypes.bool.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({

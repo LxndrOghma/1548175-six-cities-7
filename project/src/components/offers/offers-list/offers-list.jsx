@@ -12,7 +12,19 @@ function OffersList({offers, setActiveCard = () => {}, pageType}) {
       ${offersListSettings[pageType].classNameListDiv}`
     }
     >
-      {offers.map((offer) => <Card key={offer.id} offer={offer} setActiveCard={setActiveCard} pageType={pageType}/>)}
+      {offers.map((offer) => (
+        <Card
+          key={offer.id}
+          offer={offer}
+          setActiveCard={setActiveCard}
+          pageType={pageType}
+          handleMouseEnter={() => {
+            setActiveCard(offer.id);
+          }}
+          handleMouseLeave={() => {
+            setActiveCard(NaN);
+          }}
+        />))}
     </div>
   );
 }
