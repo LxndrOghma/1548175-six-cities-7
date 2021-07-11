@@ -1,8 +1,8 @@
 import { createAction } from '@reduxjs/toolkit';
 
 export const ActionType = {
-  CHANGE_CITY: 'main/changeCity',
-  CHANGE_SORT_TYPE: 'main/changeSortType',
+  CHANGE_CITY: 'ui/changeCity',
+  CHANGE_SORT_TYPE: 'ui/changeSortType',
   LOAD_OFFERS: 'data/loadOffers',
   LOAD_OFFER: 'data/loadOffer',
   LOAD_COMMENTS: 'data/loadComments',
