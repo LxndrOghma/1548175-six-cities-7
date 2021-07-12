@@ -1,12 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import { AppRoute } from '../../../const';
 import { logout } from '../../../store/api-actions';
+import { getUserAvatarUrl, getUserEmail } from '../../../store/user/selectors';
 
-function UserMenuSignedIn({logoutAccount, userEmail, avatarUrl}) {
+function UserMenuSignedIn() {
+  const userEmail = useSelector(getUserEmail);
+  const avatarUrl = useSelector(getUserAvatarUrl);
+
+  const dispatch = useDispatch();
+
   return (
     <>
       <li className="header__nav-item user">
@@ -22,7 +27,7 @@ function UserMenuSignedIn({logoutAccount, userEmail, avatarUrl}) {
           className="header__nav-link"
           onClick={(evt) => {
             evt.preventDefault();
-            logoutAccount();
+            dispatch(logout());
           }}
           to={ AppRoute.MAIN }
         >
@@ -33,22 +38,4 @@ function UserMenuSignedIn({logoutAccount, userEmail, avatarUrl}) {
   );
 }
 
-UserMenuSignedIn.propTypes = {
-  logoutAccount: PropTypes.func.isRequired,
-  userEmail: PropTypes.string.isRequired,
-  avatarUrl: PropTypes.string.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  userEmail: state.user.email,
-  avatarUrl: state.user.avatarUrl,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  logoutAccount() {
-    dispatch(logout());
-  },
-});
-
-export {UserMenuSignedIn};
-export default connect(mapStateToProps, mapDispatchToProps)(UserMenuSignedIn);
+export default UserMenuSignedIn;

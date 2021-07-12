@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 
 import ReviewsList from '../reviews-list/reviews-list';
 import CommentForm from '../../comment/comment-form/comment-form';
-import reviewsProp from '../../props/reviews.prop';
 import { useParams } from 'react-router-dom';
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchComments } from '../../../store/api-actions';
+import { getReviews } from '../../../store/data/selectors';
 
-function ReviewsSection({reviews}) {
+function ReviewsSection() {
   const { id } = useParams();
   const dispatch = useDispatch();
+
+  const reviews = useSelector(getReviews);
 
   useEffect(() => {
     dispatch(fetchComments(id));
@@ -25,13 +26,4 @@ function ReviewsSection({reviews}) {
   );
 }
 
-ReviewsSection.propTypes = {
-  reviews: PropTypes.arrayOf(reviewsProp).isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  reviews: state.reviews,
-});
-
-export {ReviewsSection};
-export default connect(mapStateToProps)(ReviewsSection);
+export default ReviewsSection;

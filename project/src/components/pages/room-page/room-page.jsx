@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import Header from '../../header/page-header/page-header';
 import ReviewsSection from '../../reviews/reviews-section/reviews-section';
-import offersProp from '../../props/offers.prop';
 import Map from '../../map/map';
 import OffersList from '../../offers/offers-list/offers-list';
 import { isUserAuthorized, OffersListType } from '../../../const';
@@ -16,10 +14,17 @@ import GoodsList from '../../property/goods-list/goods-list';
 import { fetchCurrentOffer, fetchNearbyOffers } from '../../../store/api-actions';
 import LoadWrapper from '../../loading/load-wrapper/load-wrapper';
 import PropertyHost from '../../property/property-host/property-host';
+import { getCurrentOffer, getIsCurrentOfferLoaded, getNearbyOffers } from '../../../store/data/selectors';
+import { getAuthorizationStatus } from '../../../store/user/selectors';
 
-function Room({nearbyOffers, currentOffer, isCurrentOfferLoaded, authorizationStatus}) {
+function Room() {
   const { id } = useParams();
   const dispatch = useDispatch();
+
+  const nearbyOffers = useSelector(getNearbyOffers);
+  const currentOffer = useSelector(getCurrentOffer);
+  const isCurrentOfferLoaded = useSelector(getIsCurrentOfferLoaded);
+  const authorizationStatus = useSelector(getAuthorizationStatus);
 
   const offersForMap = [currentOffer, ...nearbyOffers];
 
@@ -117,20 +122,5 @@ function Room({nearbyOffers, currentOffer, isCurrentOfferLoaded, authorizationSt
   );
 }
 
-Room.propTypes = {
-  nearbyOffers: PropTypes.arrayOf(offersProp).isRequired,
-  currentOffer: offersProp,
-  isCurrentOfferLoaded: PropTypes.bool.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  isCurrentOfferLoaded: state.isCurrentOfferLoaded,
-  currentOffer: state.currentOffer,
-  nearbyOffers: state.nearbyOffers,
-  authorizationStatus: state.authorizationStatus,
-});
-
-export { Room };
-export default connect(mapStateToProps)(Room);
+export default Room;
 
