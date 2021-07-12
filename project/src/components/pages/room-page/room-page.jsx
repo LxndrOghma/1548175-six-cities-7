@@ -100,7 +100,7 @@ function Room() {
                 </div>
                 {goods && <GoodsList goods={goods} />}
                 {host && <PropertyHost host={host} description={description} />}
-                {isUserAuthorized(authorizationStatus) && <ReviewsSection />}
+                {isUserAuthorized(authorizationStatus) && <ReviewsSection id={id}/>}
               </div>
             </div>
             <section className="property__map map">

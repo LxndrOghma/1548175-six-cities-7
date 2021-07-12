@@ -99,6 +99,8 @@ const DEFAULT_CITY = 'Paris';
 
 const DEFAULT_SORT_TYPE = 'Popular';
 
+const MAX_REVIEWS_COUNT = 10;
+
 export {
   AppRoute,
   APIRoute,
@@ -113,5 +115,6 @@ export {
   isUserAuthorized,
   CommentFormSettings,
   DEFAULT_CITY,
-  DEFAULT_SORT_TYPE
+  DEFAULT_SORT_TYPE,
+  MAX_REVIEWS_COUNT
 };
