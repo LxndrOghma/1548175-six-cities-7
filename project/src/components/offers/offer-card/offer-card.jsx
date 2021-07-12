@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import offersProp from '../../props/offers.prop';
 import { offersListSettings } from '../../../const';
 
-function Card({offer, pageType, handleMouseEnter, handleMouseLeave}) {
+function Card({offer, pageType, handleMouseEnter = () => {}, handleMouseLeave = () => {}}) {
   const {previewImage, price, title, type, isPremium, id, rating} = offer;
 
   return (
