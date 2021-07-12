@@ -72,4 +72,8 @@ Map.propTypes = {
   activeCard: PropTypes.number.isRequired,
 };
 
+Map.defaultProps = {
+  activeCard: NaN,
+};
+
 export default Map;
