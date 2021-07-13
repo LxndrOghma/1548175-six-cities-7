@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import offersProp from '../../props/offers.prop';
-import { offersListSettings, OffersListType } from '../../../const';
+import { offersListSettings } from '../../../const';
 
-function Card({offer, setActiveCard, pageType}) {
+function Card({offer, pageType, handleMouseEnter = () => {}, handleMouseLeave = () => {}}) {
   const {previewImage, price, title, type, isPremium, id, rating} = offer;
 
   return (
@@ -14,16 +14,8 @@ function Card({offer, setActiveCard, pageType}) {
         `place-card
         ${offersListSettings[pageType].classNameCardArticle}`
       }
-      onMouseEnter={() => {
-        if (pageType === OffersListType.MAIN_PAGE) {
-          setActiveCard(id);
-        }
-      }}
-      onMouseLeave={() => {
-        if (pageType === OffersListType.MAIN_PAGE) {
-          setActiveCard(NaN);
-        }
-      }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {isPremium &&
       <div className="place-card__mark">
@@ -68,8 +60,9 @@ function Card({offer, setActiveCard, pageType}) {
 
 Card.propTypes = {
   offer: offersProp,
-  setActiveCard: PropTypes.func.isRequired,
   pageType: PropTypes.string.isRequired,
+  handleMouseEnter: PropTypes.func.isRequired,
+  handleMouseLeave: PropTypes.func.isRequired,
 };
 
 export default Card;

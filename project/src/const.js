@@ -93,8 +93,13 @@ const CommentFormSettings ={
   MAX_CHARACTERS_COUNT: 300,
 };
 
-const isUserAuthorized = (authorizationStatus) =>
-  authorizationStatus === AuthorizationStatus.AUTH;
+const isUserAuthorized = (authorizationStatus) => authorizationStatus === AuthorizationStatus.AUTH;
+
+const DEFAULT_CITY = 'Paris';
+
+const DEFAULT_SORT_TYPE = 'Popular';
+
+const MAX_REVIEWS_COUNT = 10;
 
 export {
   AppRoute,
@@ -108,5 +113,8 @@ export {
   SortingOptions,
   AuthorizationStatus,
   isUserAuthorized,
-  CommentFormSettings
+  CommentFormSettings,
+  DEFAULT_CITY,
+  DEFAULT_SORT_TYPE,
+  MAX_REVIEWS_COUNT
 };

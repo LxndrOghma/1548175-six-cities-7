@@ -14,4 +14,8 @@ ImagesList.propTypes = {
   images: PropTypes.array.isRequired,
 };
 
+ImagesList.defaultProps = {
+  images: [],
+};
+
 export default ImagesList;

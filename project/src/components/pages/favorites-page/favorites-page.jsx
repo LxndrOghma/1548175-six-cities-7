@@ -1,12 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import FavoritesList from '../../favorites/favorites-list/favorites-list';
 import Header from '../../header/page-header/page-header';
-import offersProp from '../../props/offers.prop';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { getOffers } from '../../../store/data/selectors';
 
-function FavoritesPage({offers}) {
+function FavoritesPage() {
+  const offers = useSelector(getOffers);
+
   return (
     <div className="page">
       <Header />
@@ -28,13 +29,4 @@ function FavoritesPage({offers}) {
   );
 }
 
-FavoritesPage.propTypes ={
-  offers: PropTypes.arrayOf( offersProp ).isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  offers: state.offers,
-});
-
-export { FavoritesPage };
-export default connect(mapStateToProps)(FavoritesPage);
+export default FavoritesPage;

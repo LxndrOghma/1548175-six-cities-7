@@ -1,4 +1,4 @@
-import { ActionCreator } from './action';
+import { loadComments, loadNearbyOffers, loadOffer, loadOffers, logout as userLogout, redirectToRoute, requiredAuthorization, setCommentsLoadState, setCurrentOfferLoadState, setIsCommentPosted, setNearbyOffersLoadState, setOffersLoadState, setUser } from './action';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import { getAdaptedComment, getAdaptedOffer, getAdaptedUser } from '../adapter/adapter';
 
@@ -6,40 +6,40 @@ const fetchOffersList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.HOTELS)
     .then(({data}) => {
       const offers = data.map((offer) => getAdaptedOffer(offer));
-      dispatch(ActionCreator.loadOffers(offers));
+      dispatch(loadOffers(offers));
     })
-    .then(() => dispatch(ActionCreator.setOffersLoadState(true)))
+    .then(() => dispatch(setOffersLoadState(true)))
 );
 
 const fetchCurrentOffer = (id) => (dispatch, _getState, api) => (
   api.get(`${APIRoute.HOTELS}/${id}`)
     .then(({data}) => {
       const offer = getAdaptedOffer(data);
-      dispatch(ActionCreator.loadOffer(offer));
+      dispatch(loadOffer(offer));
     })
-    .then(() => dispatch(ActionCreator.setCurrentOfferLoadState(true)))
-    .catch(() => dispatch(ActionCreator.redirectToRoute(AppRoute.NOT_FOUND)))
+    .then(() => dispatch(setCurrentOfferLoadState(true)))
+    .catch(() => dispatch(redirectToRoute(AppRoute.NOT_FOUND)))
 );
 
 const fetchComments = (id) => (dispatch, _getState, api) => (
   api.get(`${APIRoute.COMMENTS}${id}`)
     .then(({data}) => {
       const comments = data.map((comment) => getAdaptedComment(comment));
-      dispatch(ActionCreator.loadComments(comments));
+      dispatch(loadComments(comments));
     })
-    .then(() => dispatch(ActionCreator.setCommentsLoadState(true)))
+    .then(() => dispatch(setCommentsLoadState(true)))
 );
 
 const sendComment = ({id, comment, rating}) => (dispatch, _getState, api) => {
-  dispatch(ActionCreator.setCommentsLoadState(false));
-  dispatch(ActionCreator.setIsCommentPosted(false));
+  dispatch(setCommentsLoadState(false));
+  dispatch(setIsCommentPosted(false));
   return api.post(`${APIRoute.COMMENTS}${id}`, {comment, rating})
     .then((response) => {
       const { data } = response;
       const comments = data.map((loadedComment) => getAdaptedComment(loadedComment));
-      dispatch(ActionCreator.loadComments(comments));
-      dispatch(ActionCreator.setCommentsLoadState(true));
-      dispatch(ActionCreator.setIsCommentPosted(true));
+      dispatch(loadComments(comments));
+      dispatch(setCommentsLoadState(true));
+      dispatch(setIsCommentPosted(true));
     });
 };
 
@@ -47,33 +47,33 @@ const fetchNearbyOffers = (id) => (dispatch, _getState, api) => (
   api.get(`${APIRoute.HOTELS}/${id}/nearby`)
     .then(({data}) => {
       const offers = data.map((offer) => getAdaptedOffer(offer));
-      dispatch(ActionCreator.loadNearbyOffers(offers));
+      dispatch(loadNearbyOffers(offers));
     })
-    .then(() => dispatch(ActionCreator.setNearbyOffersLoadState(true)))
+    .then(() => dispatch(setNearbyOffersLoadState(true)))
 );
 
 const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
-    .then(({data}) => dispatch(ActionCreator.setUser(getAdaptedUser(data))))
-    .then(() => dispatch(ActionCreator.requiredAuthorization(AuthorizationStatus.AUTH)))
+    .then(({data}) => dispatch(setUser(getAdaptedUser(data))))
+    .then(() => dispatch(requiredAuthorization(AuthorizationStatus.AUTH)))
     .catch(() => {})
 );
 
 const login = ({login: email, password}) => (dispatch, _getState, api) => (
   api.post(APIRoute.LOGIN, {email, password})
     .then(({data}) => {
-      dispatch(ActionCreator.setUser(getAdaptedUser(data)));
+      dispatch(setUser(getAdaptedUser(data)));
       localStorage.setItem('token', data.token);
     })
-    .then(() => dispatch(ActionCreator.requiredAuthorization(AuthorizationStatus.AUTH)))
-    .then(() => dispatch(ActionCreator.redirectToRoute(AppRoute.MAIN)))
+    .then(() => dispatch(requiredAuthorization(AuthorizationStatus.AUTH)))
+    .then(() => dispatch(redirectToRoute(AppRoute.MAIN)))
 );
 
 const logout = () => (dispatch, _getState, api) => (
   api.delete(APIRoute.LOGOUT)
     .then(() => localStorage.removeItem('token'))
-    .then(() => dispatch(ActionCreator.logout()))
-    .then(() => dispatch(ActionCreator.redirectToRoute(AppRoute.MAIN)))
+    .then(() => dispatch(userLogout()))
+    .then(() => dispatch(redirectToRoute(AppRoute.MAIN)))
 );
 
 export {

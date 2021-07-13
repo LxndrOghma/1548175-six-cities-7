@@ -1,6 +1,8 @@
-const ActionType = {
-  CHANGE_CITY: 'main/changeCity',
-  CHANGE_SORT_TYPE: 'main/changeSortType',
+import { createAction } from '@reduxjs/toolkit';
+
+export const ActionType = {
+  CHANGE_CITY: 'ui/changeCity',
+  CHANGE_SORT_TYPE: 'ui/changeSortType',
   LOAD_OFFERS: 'data/loadOffers',
   LOAD_OFFER: 'data/loadOffer',
   LOAD_COMMENTS: 'data/loadComments',
@@ -16,69 +18,32 @@ const ActionType = {
   REDIRECT_TO_ROUTE: 'route/redirectToRoute',
 };
 
-const ActionCreator ={
-  changeCity: (payload) => ({
-    type: ActionType.CHANGE_CITY,
-    payload,
-  }),
-  changeSortType: (payload) => ({
-    type: ActionType.CHANGE_SORT_TYPE,
-    payload,
-  }),
-  loadOffers: (payload) => ({
-    type: ActionType.LOAD_OFFERS,
-    payload,
-  }),
-  loadOffer: (payload) => ({
-    type: ActionType.LOAD_OFFER,
-    payload,
-  }),
-  loadComments: (payload) => ({
-    type: ActionType.LOAD_COMMENTS,
-    payload,
-  }),
-  loadNearbyOffers: (payload) => ({
-    type: ActionType.LOAD_NEARBY_OFFERS,
-    payload,
-  }),
-  setOffersLoadState: (payload) => ({
-    type: ActionType.SET_OFFERS_LOAD_STATE,
-    payload,
-  }),
-  setCurrentOfferLoadState: (payload) => ({
-    type: ActionType.SET_CURRENT_OFFER_LOAD_STATE,
-    payload,
-  }),
-  setCommentsLoadState: (payload) => ({
-    type: ActionType.SET_COMMENTS_LOAD_STATE,
-    payload,
-  }),
-  setIsCommentPosted: (payload) => ({
-    type: ActionType.SET_IS_COMMENT_POSTED,
-    payload,
-  }),
-  setNearbyOffersLoadState: (payload) => ({
-    type: ActionType.SET_NEARBY_OFFERS_LOAD_STATE,
-    payload,
-  }),
-  requiredAuthorization: (payload) => ({
-    type: ActionType.REQUIED_AUTHORIZATION,
-    payload,
-  }),
-  logout: () => ({
-    type: ActionType.LOGOUT,
-  }),
-  redirectToRoute: (payload) => ({
-    type: ActionType.REDIRECT_TO_ROUTE,
-    payload,
-  }),
-  setUser: (payload) => ({
-    type: ActionType.SET_USER,
-    payload,
-  }),
-};
+export const changeCity = createAction(ActionType.CHANGE_CITY, (payload) => ({payload}));
 
-export {
-  ActionType,
-  ActionCreator
-};
+export const changeSortType = createAction(ActionType.CHANGE_SORT_TYPE, (payload) => ({payload}));
+
+export const loadOffers = createAction(ActionType.LOAD_OFFERS, (payload) => ({payload}));
+
+export const loadOffer = createAction(ActionType.LOAD_OFFER, (payload) => ({payload}));
+
+export const loadComments = createAction(ActionType.LOAD_COMMENTS, (payload) => ({payload}));
+
+export const loadNearbyOffers = createAction(ActionType.LOAD_NEARBY_OFFERS, (payload) => ({payload}));
+
+export const setOffersLoadState = createAction(ActionType.SET_OFFERS_LOAD_STATE, (payload) => ({payload}));
+
+export const setCurrentOfferLoadState = createAction(ActionType.SET_CURRENT_OFFER_LOAD_STATE, (payload) => ({payload}));
+
+export const setCommentsLoadState = createAction(ActionType.SET_COMMENTS_LOAD_STATE, (payload) => ({payload}));
+
+export const setIsCommentPosted = createAction(ActionType.SET_IS_COMMENT_POSTED, (payload) => ({payload}));
+
+export const setNearbyOffersLoadState = createAction(ActionType.SET_NEARBY_OFFERS_LOAD_STATE, (payload) => ({payload}));
+
+export const requiredAuthorization = createAction(ActionType.REQUIED_AUTHORIZATION, (payload) => ({payload}));
+
+export const logout = createAction(ActionType.LOGOUT);
+
+export const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (payload) => ({payload}));
+
+export const setUser = createAction(ActionType.SET_USER, (payload) => ({payload}));

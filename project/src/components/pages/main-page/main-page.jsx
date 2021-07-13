@@ -1,23 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Header from '../../header/page-header/page-header';
 import { OffersListType } from '../../../const';
-import offersProp from '../../props/offers.prop';
 import OffersList from '../../offers/offers-list/offers-list';
 import Map from '../../map/map';
 import CitiesList from '../../cities/cities-list/cities-list';
 import { getSortedByCityOffersList, getSortedOffers } from '../../../utils';
-import { ActionCreator } from '../../../store/action';
+import { changeCity, changeSortType } from '../../../store/action';
 import EmptyMainPage from '../../empty-main-page/empty-main-page';
 import PlacesSorting from '../../sorting/places-sorting/places-sorting';
 import LoadWrapper from '../../loading/load-wrapper/load-wrapper';
 import { fetchOffersList } from '../../../store/api-actions';
+import { getIsOffersLoaded, getOffers } from '../../../store/data/selectors';
+import { getCity, getSortType } from '../../../store/ui/selectors';
 
-function MainPage({offers, city, onCityChange, onSortTypeChange, isOffersLoaded}) {
+function MainPage() {
   const [activeCard, setActiveCard] = useState(NaN);
+
+  const offersList = useSelector(getOffers);
+  const city = useSelector(getCity);
+  const sortType = useSelector(getSortType);
+  const isOffersLoaded = useSelector(getIsOffersLoaded);
+
   const dispatch = useDispatch();
+
+  const sortedByCityOffersList = getSortedByCityOffersList(offersList, city);
+  const offers = getSortedOffers(sortedByCityOffersList, sortType);
+
+  const onSortTypeChange = (evt) => {
+    dispatch(changeSortType(evt.target.textContent));
+  };
+
+  const onCityChange = (evt) => {
+    dispatch(changeCity(evt.target.textContent));
+  };
 
   useEffect(() => {
     dispatch(fetchOffersList());
@@ -63,32 +80,4 @@ function MainPage({offers, city, onCityChange, onSortTypeChange, isOffersLoaded}
   );
 }
 
-MainPage.propTypes = {
-  offers: PropTypes.arrayOf(offersProp).isRequired,
-  city: PropTypes.string.isRequired,
-  onCityChange: PropTypes.func.isRequired,
-  onSortTypeChange: PropTypes.func.isRequired,
-  isOffersLoaded: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = (state) => {
-  const offers = getSortedByCityOffersList(state.offers, state.city);
-
-  return ({
-    city: state.city,
-    offers: getSortedOffers(offers, state.sortType),
-    isOffersLoaded: state.isOffersLoaded,
-  });
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  onCityChange(evt) {
-    dispatch(ActionCreator.changeCity(evt.target.textContent));
-  },
-  onSortTypeChange(evt) {
-    dispatch(ActionCreator.changeSortType(evt.target.textContent));
-  },
-});
-
-export { MainPage };
-export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
+export default MainPage;
