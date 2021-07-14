@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Header from '../../header/page-header/page-header';
-import { useSelector } from 'react-redux';
-import { getOffers } from '../../../store/data/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFavoriteOffers } from '../../../store/data/selectors';
 import FavoritesSection from '../../favorites/favorites-section/favorites-section';
 import EmptyFavoritesSection from '../../favorites/empty-favorites-section/empty-favorites-section';
+import { fetchFavoriteOffers } from '../../../store/api-actions';
 
 function FavoritesPage() {
-  const offers = useSelector(getOffers);
+  const offers = useSelector(getFavoriteOffers);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFavoriteOffers());
+  }, [dispatch]);
 
   return (
     <div className={`page ${offers.length === 0 && 'page--favorites-empty'}`}>

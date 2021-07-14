@@ -6,8 +6,7 @@ import offersProp from '../../props/offers.prop';
 
 
 function FavoritesList({offers}) {
-  const favoriteOffers = offers.filter((offer) => offer.isFavorite === true);
-  const cities = [...new Set(favoriteOffers.map((item) => item.city.name))];
+  const cities = [...new Set(offers.map((item) => item.city.name))];
 
   return (
     <ul className="favorites__list">
