@@ -11,6 +11,7 @@ const APIRoute = {
   LOGIN: '/login',
   LOGOUT: '/logout',
   COMMENTS: '/comments/',
+  FAVORITES: '/favorite',
 };
 
 const cities = [
