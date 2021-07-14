@@ -1,4 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
+import { setCurrentOffer, setFavoriteOffers, setOffers} from '../../utils';
 import {
   loadComments,
   loadFavoriteOffers,
@@ -10,6 +11,7 @@ import {
   setFavoriteOffersLoadState,
   setIsCommentPosted,
   setNearbyOffersLoadState,
+  setOfferIsFavorite,
   setOffersLoadState
 } from '../action';
 
@@ -61,6 +63,12 @@ const data = createReducer(initialState, (builder) => {
     })
     .addCase(setIsCommentPosted, (state, action) => {
       state.isCommentPosted = action.payload;
+    })
+    .addCase(setOfferIsFavorite, (state, action) => {
+      state.offers = setOffers(state.offers, action.payload);
+      state.favoriteOffers = setFavoriteOffers(state.favoriteOffers, action.payload);
+      state.currentOffer = setCurrentOffer(state.currentOffer, action.payload);
+      state.nearbyOffers = setOffers(state.nearbyOffers, action.payload);
     });
 });
 

@@ -58,11 +58,33 @@ const validateEmail = (email) => {
 
 const getWordWithCapitalLetter = (word) => word.charAt(0).toUpperCase() + word.substr(1);
 
+const setOffers = (offers, updatedOffer) => {
+  const { id } = updatedOffer;
+  const offerIndex = offers.findIndex((offer) => offer.id === id);
+  offerIndex !== -1 &&
+    (offers[offerIndex].isFavorite = updatedOffer.isFavorite);
+  return offers;
+};
+
+const setFavoriteOffers = (favoriteOffers, deletedOffer) => {
+  const { id } = deletedOffer;
+  const offersWithoutDeleted = favoriteOffers.filter((offer) => offer.id !== id);
+  return offersWithoutDeleted;
+};
+
+const setCurrentOffer = (currentOffer, updatedOffer) => {
+  currentOffer && (currentOffer.id === updatedOffer.id) && (currentOffer.isFavorite = updatedOffer.isFavorite);
+  return currentOffer;
+};
+
 export {
   getMonthYearFormatedDate,
   getNumericFormatedData,
   getSortedByCityOffersList,
   getSortedOffers,
   validateEmail,
-  getWordWithCapitalLetter
+  getWordWithCapitalLetter,
+  setOffers,
+  setFavoriteOffers,
+  setCurrentOffer
 };

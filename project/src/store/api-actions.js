@@ -1,4 +1,4 @@
-import { loadComments, loadFavoriteOffers, loadNearbyOffers, loadOffer, loadOffers, logout as userLogout, redirectToRoute, requiredAuthorization, setCommentsLoadState, setCurrentOfferLoadState, setFavoriteOffersLoadState, setIsCommentPosted, setNearbyOffersLoadState, setOffersLoadState, setUser } from './action';
+import { loadComments, loadFavoriteOffers, loadNearbyOffers, loadOffer, loadOffers, logout as userLogout, redirectToRoute, requiredAuthorization, setCommentsLoadState, setCurrentOfferLoadState, setFavoriteOffersLoadState, setIsCommentPosted, setNearbyOffersLoadState, setOfferIsFavorite, setOffersLoadState, setUser } from './action';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import { getAdaptedComment, getAdaptedOffer, getAdaptedUser } from '../adapter/adapter';
 
@@ -37,6 +37,12 @@ const fetchFavoriteOffers = () => (dispatch, _getState, api) => (
       dispatch(loadFavoriteOffers(favoriteOffers));
     })
     .then(() => dispatch(setFavoriteOffersLoadState(true)))
+);
+
+const markOfferIsFavorite = (id, status) => (dispatch, _getState, api) => (
+  api.post(`${APIRoute.FAVORITES}/${id}/${status}`)
+    .then(({data}) => dispatch(setOfferIsFavorite(getAdaptedOffer(data))))
+    .catch(() => dispatch(redirectToRoute(AppRoute.LOGIN)))
 );
 
 const sendComment = ({id, comment, rating}) => (dispatch, _getState, api) => {
@@ -92,6 +98,7 @@ export {
   sendComment,
   fetchNearbyOffers,
   fetchFavoriteOffers,
+  markOfferIsFavorite,
   checkAuth,
   login,
   logout

@@ -14,6 +14,7 @@ export const ActionType = {
   SET_IS_COMMENT_POSTED: 'data/setIsCommentPosted',
   SET_NEARBY_OFFERS_LOAD_STATE: 'data/setNearbyOffersLoadState',
   SET_FAVORITE_OFFERS_LOAD_STATE: 'data/setFavoriteOffersLoadState',
+  SET_OFFER_IS_FAVORITE: 'data/setOfferIsFavorite',
   REQUIED_AUTHORIZATION: 'user/requiredAuthorization',
   LOGOUT: 'user/logout',
   SET_USER: 'user/setUser',
@@ -45,6 +46,8 @@ export const setIsCommentPosted = createAction(ActionType.SET_IS_COMMENT_POSTED,
 export const setNearbyOffersLoadState = createAction(ActionType.SET_NEARBY_OFFERS_LOAD_STATE, (payload) => ({payload}));
 
 export const setFavoriteOffersLoadState = createAction(ActionType.SET_FAVORITE_OFFERS_LOAD_STATE, (payload) => ({payload}));
+
+export const setOfferIsFavorite = createAction(ActionType.SET_OFFER_IS_FAVORITE, (payload) => ({payload}));
 
 export const requiredAuthorization = createAction(ActionType.REQUIED_AUTHORIZATION, (payload) => ({payload}));
 
