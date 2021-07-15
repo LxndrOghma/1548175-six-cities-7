@@ -6,7 +6,7 @@ import Header from '../../header/page-header/page-header';
 import ReviewsSection from '../../reviews/reviews-section/reviews-section';
 import Map from '../../map/map';
 import OffersList from '../../offers/offers-list/offers-list';
-import { isUserAuthorized, OffersListType } from '../../../const';
+import { FavoriteButtonType, isUserAuthorized, OffersListType } from '../../../const';
 import PremiumMark from '../../property/premium-mark/premium-mark';
 import ImagesList from '../../property/images-list/images-list';
 import { getWordWithCapitalLetter } from '../../../utils';
@@ -16,6 +16,7 @@ import LoadWrapper from '../../loading/load-wrapper/load-wrapper';
 import PropertyHost from '../../property/property-host/property-host';
 import { getCurrentOffer, getIsCurrentOfferLoaded, getNearbyOffers } from '../../../store/data/selectors';
 import { getAuthorizationStatus } from '../../../store/user/selectors';
+import FavoriteButton from '../../favorites/favorite-button/favorite-button';
 
 function Room() {
   const { id } = useParams();
@@ -64,12 +65,7 @@ function Room() {
                   <h1 className="property__name">
                     {title}
                   </h1>
-                  <button className="property__bookmark-button button" type="button">
-                    <svg className="property__bookmark-icon" width="31" height="33">
-                      <use xlinkHref="#icon-bookmark"></use>
-                    </svg>
-                    <span className="visually-hidden">To bookmarks</span>
-                  </button>
+                  <FavoriteButton offer={currentOffer} buttonSettings={FavoriteButtonType.ROOM_PAGE} />
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">

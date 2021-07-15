@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 import Card from '../offer-card/offer-card';
 import offersProp from '../../props/offers.prop';
-import { offersListSettings } from '../../../const';
+import { OffersListSettings } from '../../../const';
 
 function OffersList({offers, setActiveCard = () => {}, pageType}) {
   return (
     <div className={
       `places__list
-      ${offersListSettings[pageType].classNameListDiv}`
+      ${OffersListSettings[pageType].classNameListDiv}`
     }
     >
       {offers.map((offer) => (

@@ -1,8 +1,23 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { loadComments, loadNearbyOffers, loadOffer, loadOffers, setCommentsLoadState, setCurrentOfferLoadState, setIsCommentPosted, setNearbyOffersLoadState, setOffersLoadState } from '../action';
+import { setCurrentOffer, setFavoriteOffers, setOffers} from '../../utils';
+import {
+  loadComments,
+  loadFavoriteOffers,
+  loadNearbyOffers,
+  loadOffer,
+  loadOffers,
+  setCommentsLoadState,
+  setCurrentOfferLoadState,
+  setFavoriteOffersLoadState,
+  setIsCommentPosted,
+  setNearbyOffersLoadState,
+  setOfferIsFavorite,
+  setOffersLoadState
+} from '../action';
 
 const initialState = {
   offers: [],
+  favoriteOffers: [],
   currentOffer: {},
   reviews: [],
   nearbyOffers: [],
@@ -10,6 +25,7 @@ const initialState = {
   isCurrentOfferLoaded: false,
   isCommentsLoaded: false,
   isNearbyOffersLoaded: false,
+  isFavoriteOffersLoaded: false,
   isCommentPosted: true,
 };
 
@@ -27,6 +43,9 @@ const data = createReducer(initialState, (builder) => {
     .addCase(loadNearbyOffers, (state, action) => {
       state.nearbyOffers = action.payload;
     })
+    .addCase(loadFavoriteOffers, (state, action) => {
+      state.favoriteOffers = action.payload;
+    })
     .addCase(setOffersLoadState, (state, action) => {
       state.isOffersLoaded = action.payload;
     })
@@ -39,8 +58,17 @@ const data = createReducer(initialState, (builder) => {
     .addCase(setNearbyOffersLoadState, (state, action) => {
       state.isNearbyOffersLoaded = action.payload;
     })
+    .addCase(setFavoriteOffersLoadState, (state, action) => {
+      state.isFavoriteOffersLoaded = action.payload;
+    })
     .addCase(setIsCommentPosted, (state, action) => {
       state.isCommentPosted = action.payload;
+    })
+    .addCase(setOfferIsFavorite, (state, action) => {
+      state.offers = setOffers(state.offers, action.payload);
+      state.favoriteOffers = setFavoriteOffers(state.favoriteOffers, action.payload);
+      state.currentOffer = setCurrentOffer(state.currentOffer, action.payload);
+      state.nearbyOffers = setOffers(state.nearbyOffers, action.payload);
     });
 });
 

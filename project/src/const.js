@@ -11,6 +11,7 @@ const APIRoute = {
   LOGIN: '/login',
   LOGOUT: '/logout',
   COMMENTS: '/comments/',
+  FAVORITES: '/favorite',
 };
 
 const cities = [
@@ -62,7 +63,13 @@ const OffersListType = {
   ROOM_PAGE: 'room',
 };
 
-const offersListSettings= {
+const FavoriteButtonType = {
+  DEFAULT: 'default',
+  ROOM_PAGE: 'roomPage',
+  FAVORITES_PAGE: 'favoritesPage',
+};
+
+const OffersListSettings = {
   main: {
     classNameListDiv: 'cities__places-list tabs__content',
     classNameCardArticle: 'cities__place-card',
@@ -72,6 +79,33 @@ const offersListSettings= {
     classNameListDiv: 'near-places__list',
     classNameCardArticle: 'near-places__card',
     classNameWrapperDiv: 'near-places__image-wrapper',
+  },
+};
+
+const FavoriteButtonSettings = {
+  default: {
+    buttonClasses: 'place-card__bookmark-button button',
+    activeButtonClasses:'place-card__bookmark-button--active',
+    svgClasses: 'place-card__bookmark-icon',
+    iconWidth: 18,
+    iconHeight: 19,
+    spanText: 'To bookmarks',
+  },
+  roomPage: {
+    buttonClasses: 'property__bookmark-button button',
+    activeButtonClasses:'property__bookmark-button--active',
+    svgClasses: 'property__bookmark-icon',
+    iconWidth: 31,
+    iconHeight: 33,
+    spanText: 'To bookmarks',
+  },
+  favoritesPage: {
+    buttonClasses: 'place-card__bookmark-button button',
+    activeButtonClasses:'place-card__bookmark-button--active',
+    svgClasses: 'place-card__bookmark-icon',
+    iconWidth: 18,
+    iconHeight: 19,
+    spanText: 'In bookmarks',
   },
 };
 
@@ -108,7 +142,9 @@ export {
   RatingSystem,
   PinSettings,
   OffersListType,
-  offersListSettings,
+  FavoriteButtonType,
+  OffersListSettings,
+  FavoriteButtonSettings,
   cities,
   SortingOptions,
   AuthorizationStatus,

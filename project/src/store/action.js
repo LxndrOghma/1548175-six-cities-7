@@ -7,11 +7,14 @@ export const ActionType = {
   LOAD_OFFER: 'data/loadOffer',
   LOAD_COMMENTS: 'data/loadComments',
   LOAD_NEARBY_OFFERS: 'data/loadNearbyOffers',
+  LOAD_FAVORITE_OFFERS: 'data/loadFavorites',
   SET_OFFERS_LOAD_STATE: 'data/setOffersLoadState',
   SET_CURRENT_OFFER_LOAD_STATE: 'data/setCurrentOfferLoadState',
   SET_COMMENTS_LOAD_STATE: 'data/setCommentsLoadState',
   SET_IS_COMMENT_POSTED: 'data/setIsCommentPosted',
   SET_NEARBY_OFFERS_LOAD_STATE: 'data/setNearbyOffersLoadState',
+  SET_FAVORITE_OFFERS_LOAD_STATE: 'data/setFavoriteOffersLoadState',
+  SET_OFFER_IS_FAVORITE: 'data/setOfferIsFavorite',
   REQUIED_AUTHORIZATION: 'user/requiredAuthorization',
   LOGOUT: 'user/logout',
   SET_USER: 'user/setUser',
@@ -30,6 +33,8 @@ export const loadComments = createAction(ActionType.LOAD_COMMENTS, (payload) => 
 
 export const loadNearbyOffers = createAction(ActionType.LOAD_NEARBY_OFFERS, (payload) => ({payload}));
 
+export const loadFavoriteOffers = createAction(ActionType.LOAD_FAVORITE_OFFERS, (payload) => ({payload}));
+
 export const setOffersLoadState = createAction(ActionType.SET_OFFERS_LOAD_STATE, (payload) => ({payload}));
 
 export const setCurrentOfferLoadState = createAction(ActionType.SET_CURRENT_OFFER_LOAD_STATE, (payload) => ({payload}));
@@ -39,6 +44,10 @@ export const setCommentsLoadState = createAction(ActionType.SET_COMMENTS_LOAD_ST
 export const setIsCommentPosted = createAction(ActionType.SET_IS_COMMENT_POSTED, (payload) => ({payload}));
 
 export const setNearbyOffersLoadState = createAction(ActionType.SET_NEARBY_OFFERS_LOAD_STATE, (payload) => ({payload}));
+
+export const setFavoriteOffersLoadState = createAction(ActionType.SET_FAVORITE_OFFERS_LOAD_STATE, (payload) => ({payload}));
+
+export const setOfferIsFavorite = createAction(ActionType.SET_OFFER_IS_FAVORITE, (payload) => ({payload}));
 
 export const requiredAuthorization = createAction(ActionType.REQUIED_AUTHORIZATION, (payload) => ({payload}));
 
