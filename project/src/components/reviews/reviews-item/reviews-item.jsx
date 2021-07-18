@@ -33,7 +33,7 @@ function ReviewsItem({review}) {
         <p className="reviews__text">
           {comment}
         </p>
-        <time className="reviews__time" dateTime={getNumericFormatedData(date)}>{getMonthYearFormatedDate(date)}</time>
+        <time className="reviews__time" dateTime={getNumericFormatedData(date)} data-testid='reviews__time'>{getMonthYearFormatedDate(date)}</time>
       </div>
     </li>
   );

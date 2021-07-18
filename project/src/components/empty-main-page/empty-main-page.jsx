@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import CitiesList from '../cities/cities-list/cities-list';
 import Header from '../header/page-header/page-header';
 import LoadWrapper from '../loading/load-wrapper/load-wrapper';
+import EmptyOffersList from '../offers/empty-offers-list/empty-offers-list';
 
 function EmptyMainPage({onCityChange, city, isDataLoaded}) {
   return (
@@ -16,17 +17,7 @@ function EmptyMainPage({onCityChange, city, isDataLoaded}) {
           <div className="tabs">
             <CitiesList onCityChange={onCityChange} activeCity={city}/>
           </div>
-          <div className="cities">
-            <div className="cities__places-container cities__places-container--empty container">
-              <section className="cities__no-places">
-                <div className="cities__status-wrapper tabs__content">
-                  <b className="cities__status">No places to stay available</b>
-                  <p className="cities__status-description">We could not find any property available at the moment in {city}</p>
-                </div>
-              </section>
-              <div className="cities__right-section"></div>
-            </div>
-          </div>
+          <EmptyOffersList city={city} />
         </main>
       </LoadWrapper>
     </div>
