@@ -2,42 +2,46 @@ import { loadComments, loadFavoriteOffers, loadNearbyOffers, loadOffer, loadOffe
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import { getAdaptedComment, getAdaptedOffer, getAdaptedUser } from '../adapter/adapter';
 
-const fetchOffersList = () => (dispatch, _getState, api) => (
-  api.get(APIRoute.HOTELS)
+const fetchOffersList = () => (dispatch, _getState, api) => {
+  dispatch(setOffersLoadState(false));
+  return api.get(APIRoute.HOTELS)
     .then(({data}) => {
       const offers = data.map((offer) => getAdaptedOffer(offer));
       dispatch(loadOffers(offers));
     })
-    .then(() => dispatch(setOffersLoadState(true)))
-);
+    .then(() => dispatch(setOffersLoadState(true)));
+};
 
-const fetchCurrentOffer = (id) => (dispatch, _getState, api) => (
-  api.get(`${APIRoute.HOTELS}/${id}`)
+const fetchCurrentOffer = (id) => (dispatch, _getState, api) => {
+  dispatch(setCurrentOfferLoadState(false));
+  return api.get(`${APIRoute.HOTELS}/${id}`)
     .then(({data}) => {
       const offer = getAdaptedOffer(data);
       dispatch(loadOffer(offer));
     })
     .then(() => dispatch(setCurrentOfferLoadState(true)))
-    .catch(() => dispatch(redirectToRoute(AppRoute.NOT_FOUND)))
-);
+    .catch(() => dispatch(redirectToRoute(AppRoute.NOT_FOUND)));
+};
 
-const fetchComments = (id) => (dispatch, _getState, api) => (
-  api.get(`${APIRoute.COMMENTS}${id}`)
+const fetchComments = (id) => (dispatch, _getState, api) => {
+  dispatch(setCommentsLoadState(false));
+  return api.get(`${APIRoute.COMMENTS}${id}`)
     .then(({data}) => {
       const comments = data.map((comment) => getAdaptedComment(comment));
       dispatch(loadComments(comments));
     })
-    .then(() => dispatch(setCommentsLoadState(true)))
-);
+    .then(() => dispatch(setCommentsLoadState(true)));
+};
 
-const fetchFavoriteOffers = () => (dispatch, _getState, api) => (
-  api.get(APIRoute.FAVORITES)
+const fetchFavoriteOffers = () => (dispatch, _getState, api) => {
+  dispatch(setFavoriteOffersLoadState(false));
+  return api.get(APIRoute.FAVORITES)
     .then(({data}) => {
       const favoriteOffers = data.map((offer) => getAdaptedOffer(offer));
       dispatch(loadFavoriteOffers(favoriteOffers));
     })
-    .then(() => dispatch(setFavoriteOffersLoadState(true)))
-);
+    .then(() => dispatch(setFavoriteOffersLoadState(true)));
+};
 
 const markOfferIsFavorite = (id, status) => (dispatch, _getState, api) => (
   api.post(`${APIRoute.FAVORITES}/${id}/${status}`)
@@ -58,14 +62,15 @@ const sendComment = ({id, comment, rating}) => (dispatch, _getState, api) => {
     });
 };
 
-const fetchNearbyOffers = (id) => (dispatch, _getState, api) => (
-  api.get(`${APIRoute.HOTELS}/${id}/nearby`)
+const fetchNearbyOffers = (id) => (dispatch, _getState, api) => {
+  dispatch(setNearbyOffersLoadState(false));
+  return api.get(`${APIRoute.HOTELS}/${id}/nearby`)
     .then(({data}) => {
       const offers = data.map((offer) => getAdaptedOffer(offer));
       dispatch(loadNearbyOffers(offers));
     })
-    .then(() => dispatch(setNearbyOffersLoadState(true)))
-);
+    .then(() => dispatch(setNearbyOffersLoadState(true)));
+};
 
 const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
