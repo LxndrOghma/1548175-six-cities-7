@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import UserMenuSignedIn from '../user-menu-signed-in/user-menu-signed-in';
-import UserMenuNotLogged from '../user-menu-not-logged/user-munu-not-logged';
+import UserMenuNotLogged from '../user-menu-not-logged/user-menu-not-logged';
 import { AuthorizationStatus } from '../../../const';
 import { getAuthorizationStatus } from '../../../store/user/selectors';
 
