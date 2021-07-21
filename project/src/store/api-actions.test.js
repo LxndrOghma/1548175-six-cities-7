@@ -396,6 +396,8 @@ describe('Async operations', () => {
     const dispatch = jest.fn();
     const logoutLoader = logout();
 
+    Storage.prototype.removeItem = jest.fn();
+
     apiMock
       .onDelete(APIRoute.LOGOUT)
       .reply(204);
@@ -412,6 +414,9 @@ describe('Async operations', () => {
           type: ActionType.REDIRECT_TO_ROUTE,
           payload: AppRoute.MAIN,
         });
+
+        expect(Storage.prototype.removeItem).toHaveBeenCalledTimes(1);
+        expect(Storage.prototype.removeItem).toHaveBeenNthCalledWith(1, 'token');
       });
   });
 });
