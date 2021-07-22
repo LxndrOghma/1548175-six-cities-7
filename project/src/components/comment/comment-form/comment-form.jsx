@@ -40,7 +40,15 @@ function CommentForm({id}) {
     <form className="reviews__form form" action="#" method="post" onChange={handleFormChange} onSubmit={handleFormSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <RatingInputsList comment={comment} setComment={setComment}/>
-      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" value={comment.text} onChange={(evt) => {setComment({...comment, text: evt.target.value});}}></textarea>
+      <textarea
+        className="reviews__textarea form__textarea"
+        id="review"
+        name="review"
+        placeholder="Tell how was your stay, what you like and what can be improved"
+        value={comment.text}
+        onChange={(evt) => {setComment({...comment, text: evt.target.value});}}
+      >
+      </textarea>
       {!isCommentPosted && <p style={{color: 'red'}}>Error posting comment</p>}
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
