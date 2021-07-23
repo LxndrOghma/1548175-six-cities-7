@@ -1,16 +1,21 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import { AppRoute } from '../../../const';
 import Header from '../../header/page-header/page-header';
 import { login } from '../../../store/api-actions';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { validateEmail } from '../../../utils';
 
-function SignIn({onSubmit}) {
+function SignIn() {
   const loginRef = useRef();
   const passwordRef = useRef();
+
+  const dispatch = useDispatch();
+
+  const onSubmit = (authData) => {
+    dispatch(login(authData));
+  };
 
   const handleEmailInput = (evt) => {
     !validateEmail(evt.target.value)
@@ -51,6 +56,7 @@ function SignIn({onSubmit}) {
                   placeholder="Email"
                   required
                   onInput={handleEmailInput}
+                  data-testid='email'
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
@@ -62,6 +68,7 @@ function SignIn({onSubmit}) {
                   name="password"
                   placeholder="Password"
                   required
+                  data-testid='password'
                 />
               </div>
               <button
@@ -85,15 +92,4 @@ function SignIn({onSubmit}) {
   );
 }
 
-SignIn.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  onSubmit(authData) {
-    dispatch(login(authData));
-  },
-});
-
-export {SignIn};
-export default connect(null, mapDispatchToProps)(SignIn);
+export default SignIn;
