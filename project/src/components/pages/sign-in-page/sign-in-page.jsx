@@ -1,17 +1,25 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AppRoute } from '../../../const';
+import { AppRoute, AuthorizationStatus } from '../../../const';
 import Header from '../../header/page-header/page-header';
 import { login } from '../../../store/api-actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { validateEmail } from '../../../utils';
+import { getAuthorizationStatus } from '../../../store/user/selectors';
+import { redirectToRoute } from '../../../store/action';
 
 function SignIn() {
   const loginRef = useRef();
   const passwordRef = useRef();
 
+  const authorizationStatus = useSelector(getAuthorizationStatus);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    authorizationStatus === AuthorizationStatus.AUTH &&
+    dispatch(redirectToRoute(AppRoute.MAIN));
+  }, [dispatch, authorizationStatus]);
 
   const onSubmit = (authData) => {
     dispatch(login(authData));
