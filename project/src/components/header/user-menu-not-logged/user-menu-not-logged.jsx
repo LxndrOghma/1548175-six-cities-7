@@ -6,7 +6,7 @@ import { AppRoute } from '../../../const';
 function UserMenuNotLogged() {
   return (
     <li className="header__nav-item user">
-      <Link className="header__nav-link header__nav-link--profile" to={ AppRoute.LOGIN }>
+      <Link className="header__nav-link header__nav-link--profile" to={ AppRoute.LOGIN } data-testid='header__nav-link'>
         <div className="header__avatar-wrapper user__avatar-wrapper">
         </div>
         <span className="header__user-name user__name">Sign In</span>

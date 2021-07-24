@@ -4,14 +4,21 @@ import PropTypes from 'prop-types';
 
 import { AppRoute } from '../../../const';
 import FavoritesPlaces from '../favorites-places/favorites-places';
+import { useDispatch } from 'react-redux';
+import { changeCity } from '../../../store/action';
 
 function FavoritesItem({city, offers}) {
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(changeCity(city));
+  };
 
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
         <div className="locations__item">
-          <Link className="locations__item-link" to={ AppRoute.MAIN }>
+          <Link className="locations__item-link" to={ AppRoute.MAIN } onClick={handleClick} data-testid='locations__item-link'>
             <span>{city}</span>
           </Link>
         </div>

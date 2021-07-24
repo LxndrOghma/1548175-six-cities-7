@@ -267,11 +267,11 @@ const nearbyOffers = [
     goods: ['Heating', 'Kitchen', 'Cable TV', 'Washing machine', 'Coffee machine', 'Dishwasher'],
     host: {
       avatarUrl: 'img/test.jpg',
-      id: 2,
+      id: 22,
       isPro: true,
       name: 'Angelina',
     },
-    id: 2,
+    id: 22,
     images: ['img/test1.jpg', 'img/test2.jpg'],
     isFavorite: false,
     isPremium: false,

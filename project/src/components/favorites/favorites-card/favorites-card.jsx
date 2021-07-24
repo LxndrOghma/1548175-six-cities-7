@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FavoriteButtonType } from '../../../const';
+import { getWordWithCapitalLetter } from '../../../utils';
 
 import offersProp from '../../props/offers.prop';
 import FavoriteButton from '../favorite-button/favorite-button';
@@ -31,7 +32,7 @@ function FavoritesCard({offer}) {
         <h2 className="place-card__name">
           <Link to={ `/offer/${id}` }>{title}</Link>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">{getWordWithCapitalLetter(type)}</p>
       </div>
     </article>
   );
