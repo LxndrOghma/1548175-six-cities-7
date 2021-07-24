@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import offersProp from '../../props/offers.prop';
 import { FavoriteButtonType, OffersListSettings } from '../../../const';
 import FavoriteButton from '../../favorites/favorite-button/favorite-button';
+import { getWordWithCapitalLetter } from '../../../utils';
 
 function Card({offer, pageType, handleMouseEnter = () => {}, handleMouseLeave = () => {}}) {
   const {previewImage, price, title, type, isPremium, id, rating} = offer;
@@ -41,14 +42,14 @@ function Card({offer, pageType, handleMouseEnter = () => {}, handleMouseLeave = 
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${ rating * 20 }%` }}></span>
+            <span style={{ width: `${ Math.round(rating) * 20 }%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
           <Link to={ `/offer/${id}` }>{title}</Link>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">{getWordWithCapitalLetter(type)}</p>
       </div>
     </article>
   );
