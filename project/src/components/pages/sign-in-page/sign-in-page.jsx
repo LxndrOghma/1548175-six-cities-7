@@ -27,7 +27,13 @@ function SignIn() {
 
   const handleEmailInput = (evt) => {
     !validateEmail(evt.target.value)
-      ? evt.target.setCustomValidity('Email введён не верно')
+      ? evt.target.setCustomValidity('Email entered incorrectly')
+      : evt.target.setCustomValidity('');
+  };
+
+  const handlePasswordInput = (evt) => {
+    evt.target.value.trim().length < 1
+      ? evt.target.setCustomValidity('Email cannot contain only spaces')
       : evt.target.setCustomValidity('');
   };
 
@@ -77,6 +83,7 @@ function SignIn() {
                   placeholder="Password"
                   required
                   data-testid='password'
+                  onInput={handlePasswordInput}
                 />
               </div>
               <button
