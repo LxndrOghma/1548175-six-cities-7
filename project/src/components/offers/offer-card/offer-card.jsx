@@ -7,7 +7,7 @@ import { FavoriteButtonType, OffersListSettings } from '../../../const';
 import FavoriteButton from '../../favorites/favorite-button/favorite-button';
 import { getWordWithCapitalLetter } from '../../../utils';
 
-function Card({offer, pageType, handleMouseEnter = () => {}, handleMouseLeave = () => {}}) {
+function OfferCard({offer, pageType, handleMouseEnter = () => {}, handleMouseLeave = () => {}}) {
   const {previewImage, price, title, type, isPremium, id, rating} = offer;
 
   return (
@@ -55,11 +55,11 @@ function Card({offer, pageType, handleMouseEnter = () => {}, handleMouseLeave = 
   );
 }
 
-Card.propTypes = {
+OfferCard.propTypes = {
   offer: offersProp,
   pageType: PropTypes.string.isRequired,
   handleMouseEnter: PropTypes.func.isRequired,
   handleMouseLeave: PropTypes.func.isRequired,
 };
 
-export default Card;
+export default OfferCard;

@@ -6,12 +6,12 @@ import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import userEvent from '@testing-library/user-event';
 
-import SignIn from './sign-in-page';
+import SignInPage from './sign-in-page';
 import { AuthorizationStatus } from '../../../const';
 
 let store;
 
-describe('Component: SignIn', () => {
+describe('Component: SignInPage', () => {
   beforeEach(() => {
     const mockStore = configureStore({});
     store = mockStore({
@@ -34,7 +34,7 @@ describe('Component: SignIn', () => {
     const { getByRole, getByText, getByPlaceholderText, getByTestId, getByDisplayValue } = render(
       <Provider store={store}>
         <Router history={history}>
-          <SignIn />
+          <SignInPage />
         </Router>
       </Provider>,
     );

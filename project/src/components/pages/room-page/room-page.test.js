@@ -7,7 +7,7 @@ import configureStore from 'redux-mock-store';
 import { createApi } from '../../../services/api';
 import thunk from 'redux-thunk';
 
-import Room from './room-page';
+import RoomPage from './room-page';
 import { AuthorizationStatus } from '../../../const';
 
 let history;
@@ -148,7 +148,7 @@ const mockReviews = [
   },
 ];
 
-describe('Component: Room', () => {
+describe('Component: RoomPage', () => {
   beforeAll(() => {
     history = createMemoryHistory();
     history.push('offer/17');
@@ -179,7 +179,7 @@ describe('Component: Room', () => {
     const { getByText } = render(
       <Provider store={store}>
         <Router history={history}>
-          <Room />
+          <RoomPage />
         </Router>
       </Provider>,
     );
@@ -215,7 +215,7 @@ describe('Component: Room', () => {
     const { queryByText } = render(
       <Provider store={store}>
         <Router history={history}>
-          <Room />
+          <RoomPage />
         </Router>
       </Provider>);
 

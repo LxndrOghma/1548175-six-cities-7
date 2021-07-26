@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import {render} from '@testing-library/react';
 import configureStore from 'redux-mock-store';
 
-import Card from './offer-card';
+import OfferCard from './offer-card';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 
@@ -46,7 +46,7 @@ let store;
 let history;
 const mockStore = configureStore({});
 
-describe('Component: Card', () => {
+describe('Component: OfferCard', () => {
   beforeAll(() => {
     history = createMemoryHistory();
     store = mockStore({});
@@ -56,7 +56,7 @@ describe('Component: Card', () => {
     const { getByText } = render(
       <Provider store={store}>
         <Router history={history}>
-          <Card offer={mockOffer} pageType={'main'} handleMouseEnter={() => {}} handleMouseLeave={() => {}}/>
+          <OfferCard offer={mockOffer} pageType={'main'} handleMouseEnter={() => {}} handleMouseLeave={() => {}}/>
         </Router>
       </Provider>,
     );

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import Header from '../../header/page-header/page-header';
+import PageHeader from '../../header/page-header/page-header';
 import ReviewsSection from '../../reviews/reviews-section/reviews-section';
 import Map from '../../map/map';
 import OffersList from '../../offers/offers-list/offers-list';
@@ -17,7 +17,7 @@ import PropertyHost from '../../property/property-host/property-host';
 import { getCurrentOffer, getIsCurrentOfferLoaded, getNearbyOffers } from '../../../store/data/selectors';
 import FavoriteButton from '../../favorites/favorite-button/favorite-button';
 
-function Room() {
+function RoomPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -48,7 +48,7 @@ function Room() {
 
   return (
     <div className="page">
-      <Header />
+      <PageHeader />
 
       <LoadWrapper isDataLoaded={isCurrentOfferLoaded}>
         <main className="page__main page__main--property">
@@ -116,5 +116,5 @@ function Room() {
   );
 }
 
-export default Room;
+export default RoomPage;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Card from '../offer-card/offer-card';
+import OfferCard from '../offer-card/offer-card';
 import offersProp from '../../props/offers.prop';
 import { OffersListSettings } from '../../../const';
 
@@ -13,7 +13,7 @@ function OffersList({offers, setActiveCard = () => {}, pageType}) {
     }
     >
       {offers.map((offer) => (
-        <Card
+        <OfferCard
           key={offer.id}
           offer={offer}
           setActiveCard={setActiveCard}

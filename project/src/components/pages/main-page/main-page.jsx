@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Header from '../../header/page-header/page-header';
+import PageHeader from '../../header/page-header/page-header';
 import { OffersListType } from '../../../const';
 import OffersList from '../../offers/offers-list/offers-list';
 import Map from '../../map/map';
@@ -46,7 +46,7 @@ function MainPage() {
 
   return (
     <div className="page page--gray page--main">
-      <Header />
+      <PageHeader />
 
       <LoadWrapper isDataLoaded={isOffersLoaded}>
         <main className="page__main page__main--index">

@@ -2,14 +2,14 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AppRoute, AuthorizationStatus } from '../../../const';
-import Header from '../../header/page-header/page-header';
+import PageHeader from '../../header/page-header/page-header';
 import { login } from '../../../store/api-actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { validateEmail } from '../../../utils';
 import { getAuthorizationStatus } from '../../../store/user/selectors';
 import { redirectToRoute } from '../../../store/action';
 
-function SignIn() {
+function SignInPage() {
   const loginRef = useRef();
   const passwordRef = useRef();
 
@@ -48,7 +48,7 @@ function SignIn() {
 
   return (
     <div className="page page--gray page--login">
-      <Header />
+      <PageHeader />
 
       <main className="page__main page__main--login">
         <div className="page__login-container container">
@@ -107,4 +107,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default SignInPage;

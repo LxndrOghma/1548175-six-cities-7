@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../const';
 import UserMenu from '../user-menu/user-menu';
 
-function Header() {
+function PageHeader() {
   return (
     <header className="header">
       <div className="container">
@@ -20,4 +20,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default PageHeader;

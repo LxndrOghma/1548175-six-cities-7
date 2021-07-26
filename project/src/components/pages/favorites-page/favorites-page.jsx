@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import Header from '../../header/page-header/page-header';
+import PageHeader from '../../header/page-header/page-header';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFavoriteOffers } from '../../../store/data/selectors';
 import FavoritesSection from '../../favorites/favorites-section/favorites-section';
@@ -18,7 +18,7 @@ function FavoritesPage() {
 
   return (
     <div className={`page ${offers.length === 0 && 'page--favorites-empty'}`}>
-      <Header />
+      <PageHeader />
 
       <main className={`page__main page__main--favorites ${offers.length === 0 && 'page__main--favorites-empty'}`}>
         <div className="page__favorites-container container">

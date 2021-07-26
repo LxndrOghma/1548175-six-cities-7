@@ -14,7 +14,7 @@ let history;
 let store;
 const mockStore = configureStore({});
 
-describe('Component: Header', () => {
+describe('Component: PageHeader', () => {
   beforeAll(() => {
     history = createMemoryHistory();
     store = mockStore({
