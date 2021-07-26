@@ -6,9 +6,12 @@ import CommentForm from '../../comment/comment-form/comment-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchComments } from '../../../store/api-actions';
 import { getReviews } from '../../../store/data/selectors';
+import { getAuthorizationStatus } from '../../../store/user/selectors';
+import { isUserAuthorized } from '../../../const';
 
 function ReviewsSection({ id }) {
   const dispatch = useDispatch();
+  const authorizationStatus = useSelector(getAuthorizationStatus);
 
   const reviews = useSelector(getReviews).slice().sort((first, second) => new Date(second.date) - new Date(first.date));
 
@@ -20,7 +23,7 @@ function ReviewsSection({ id }) {
     <section className="property__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
       <ReviewsList reviews={reviews}/>
-      <CommentForm id={id} />
+      {isUserAuthorized(authorizationStatus) && <CommentForm id={id} />}
     </section>
   );
 }

@@ -6,7 +6,7 @@ import Header from '../../header/page-header/page-header';
 import ReviewsSection from '../../reviews/reviews-section/reviews-section';
 import Map from '../../map/map';
 import OffersList from '../../offers/offers-list/offers-list';
-import { FavoriteButtonType, isUserAuthorized, OffersListType } from '../../../const';
+import { FavoriteButtonType, OffersListType } from '../../../const';
 import PremiumMark from '../../property/premium-mark/premium-mark';
 import ImagesList from '../../property/images-list/images-list';
 import { getWordWithCapitalLetter } from '../../../utils';
@@ -15,7 +15,6 @@ import { fetchCurrentOffer, fetchNearbyOffers } from '../../../store/api-actions
 import LoadWrapper from '../../loading/load-wrapper/load-wrapper';
 import PropertyHost from '../../property/property-host/property-host';
 import { getCurrentOffer, getIsCurrentOfferLoaded, getNearbyOffers } from '../../../store/data/selectors';
-import { getAuthorizationStatus } from '../../../store/user/selectors';
 import FavoriteButton from '../../favorites/favorite-button/favorite-button';
 
 function Room() {
@@ -25,7 +24,6 @@ function Room() {
   const nearbyOffers = useSelector(getNearbyOffers);
   const currentOffer = useSelector(getCurrentOffer);
   const isCurrentOfferLoaded = useSelector(getIsCurrentOfferLoaded);
-  const authorizationStatus = useSelector(getAuthorizationStatus);
 
   const offersForMap = [currentOffer, ...nearbyOffers];
 
@@ -96,7 +94,7 @@ function Room() {
                 </div>
                 {goods && <GoodsList goods={goods} />}
                 {host && <PropertyHost host={host} description={description} />}
-                {isUserAuthorized(authorizationStatus) && <ReviewsSection id={id}/>}
+                <ReviewsSection id={id}/>
               </div>
             </div>
             <section className="property__map map">
