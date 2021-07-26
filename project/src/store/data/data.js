@@ -1,4 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
+import { DEFAULT_OFFER } from '../../const';
 import { setCurrentOffer, setFavoriteOffers, setOffers} from '../../utils';
 import {
   loadComments,
@@ -18,7 +19,7 @@ import {
 const initialState = {
   offers: [],
   favoriteOffers: [],
-  currentOffer: {},
+  currentOffer: DEFAULT_OFFER,
   reviews: [],
   nearbyOffers: [],
   isOffersLoaded: false,
