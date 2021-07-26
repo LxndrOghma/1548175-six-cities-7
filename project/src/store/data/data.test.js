@@ -1,3 +1,4 @@
+import { DEFAULT_OFFER } from '../../const';
 import { ActionType } from '../action';
 import data from './data';
 
@@ -6,7 +7,7 @@ describe('Reducer: data', () => {
     expect(data(undefined, {})).toEqual({
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -22,7 +23,7 @@ describe('Reducer: data', () => {
     const state = {
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -41,7 +42,7 @@ describe('Reducer: data', () => {
     expect(data(state, loadOffers)).toEqual({
       offers: [{offer: 'offer'}, {offer: 'offer'}],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -57,7 +58,7 @@ describe('Reducer: data', () => {
     const state = {
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -92,7 +93,7 @@ describe('Reducer: data', () => {
     const state = {
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -111,7 +112,7 @@ describe('Reducer: data', () => {
     expect(data(state, loadComments)).toEqual({
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [{comment: 'comment'}, {comment: 'comment'}],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -127,7 +128,7 @@ describe('Reducer: data', () => {
     const state = {
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -146,7 +147,7 @@ describe('Reducer: data', () => {
     expect(data(state, loadNearbyOffers)).toEqual({
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [{nearbyOffer: 'nearbyOffer'}, {nearbyOffer: 'nearbyOffer'}],
       isOffersLoaded: false,
@@ -162,7 +163,7 @@ describe('Reducer: data', () => {
     const state = {
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -181,7 +182,7 @@ describe('Reducer: data', () => {
     expect(data(state, loadFavoriteOffers)).toEqual({
       offers: [],
       favoriteOffers: [{favoriteOffer: 'favoriteOffer'}, {favoriteOffer: 'favoriteOffer'}],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -197,7 +198,7 @@ describe('Reducer: data', () => {
     const state = {
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -216,7 +217,7 @@ describe('Reducer: data', () => {
     expect(data(state, setOffersLoadState)).toEqual({
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: true,
@@ -232,7 +233,7 @@ describe('Reducer: data', () => {
     const state = {
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -251,7 +252,7 @@ describe('Reducer: data', () => {
     expect(data(state, setCurrentOfferLoadState)).toEqual({
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -267,7 +268,7 @@ describe('Reducer: data', () => {
     const state = {
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -286,7 +287,7 @@ describe('Reducer: data', () => {
     expect(data(state, setCommentsLoadState)).toEqual({
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -302,7 +303,7 @@ describe('Reducer: data', () => {
     const state = {
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -321,7 +322,7 @@ describe('Reducer: data', () => {
     expect(data(state, setNearbyOffersLoadState)).toEqual({
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -337,7 +338,7 @@ describe('Reducer: data', () => {
     const state = {
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -356,7 +357,7 @@ describe('Reducer: data', () => {
     expect(data(state, setFavoriteOffersLoadState)).toEqual({
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -372,7 +373,7 @@ describe('Reducer: data', () => {
     const state = {
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -391,7 +392,7 @@ describe('Reducer: data', () => {
     expect(data(state, setIsCommentPosted)).toEqual({
       offers: [],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -410,7 +411,7 @@ describe('Reducer: data', () => {
         isFavorite: false,
       }],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,
@@ -435,7 +436,7 @@ describe('Reducer: data', () => {
         isFavorite: true,
       }],
       favoriteOffers: [],
-      currentOffer: {},
+      currentOffer: DEFAULT_OFFER,
       reviews: [],
       nearbyOffers: [],
       isOffersLoaded: false,

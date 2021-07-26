@@ -49,6 +49,9 @@ describe('Component: ReviewsSection', () => {
         reviews: mockReviews,
         isCommentsLoaded: true,
       },
+      USER: {
+        authorizationStatus: 'AUTH',
+      },
     });
     const { getByText } = render(
       <Provider store={store}>
