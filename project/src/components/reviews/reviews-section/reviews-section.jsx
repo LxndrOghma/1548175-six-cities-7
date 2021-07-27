@@ -1,23 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import ReviewsList from '../reviews-list/reviews-list';
 import CommentForm from '../../comment/comment-form/comment-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchComments } from '../../../store/api-actions';
-import { getReviews } from '../../../store/data/selectors';
+import { useSelector } from 'react-redux';
 import { getAuthorizationStatus } from '../../../store/user/selectors';
 import { isUserAuthorized } from '../../../const';
+import reviewsProp from '../../props/reviews.prop';
 
-function ReviewsSection({ id }) {
-  const dispatch = useDispatch();
+function ReviewsSection({ id, reviews }) {
   const authorizationStatus = useSelector(getAuthorizationStatus);
-
-  const reviews = useSelector(getReviews).slice().sort((first, second) => new Date(second.date) - new Date(first.date));
-
-  useEffect(() => {
-    dispatch(fetchComments(id));
-  }, [dispatch, id]);
 
   return (
     <section className="property__reviews reviews">
@@ -30,6 +22,7 @@ function ReviewsSection({ id }) {
 
 ReviewsSection.propTypes = {
   id: PropTypes.string.isRequired,
+  reviews: PropTypes.arrayOf(reviewsProp).isRequired,
 };
 
 export default ReviewsSection;

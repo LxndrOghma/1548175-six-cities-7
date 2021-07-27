@@ -11,10 +11,10 @@ import PremiumMark from '../../property/premium-mark/premium-mark';
 import ImagesList from '../../property/images-list/images-list';
 import { getWordWithCapitalLetter } from '../../../utils';
 import GoodsList from '../../property/goods-list/goods-list';
-import { fetchCurrentOffer, fetchNearbyOffers } from '../../../store/api-actions';
+import { fetchComments, fetchCurrentOffer, fetchNearbyOffers } from '../../../store/api-actions';
 import LoadWrapper from '../../loading/load-wrapper/load-wrapper';
 import PropertyHost from '../../property/property-host/property-host';
-import { getCurrentOffer, getIsCurrentOfferLoaded, getNearbyOffers } from '../../../store/data/selectors';
+import { getCurrentOffer, getIsCurrentOfferLoaded, getNearbyOffers, getReviews } from '../../../store/data/selectors';
 import FavoriteButton from '../../favorites/favorite-button/favorite-button';
 
 function RoomPage() {
@@ -26,10 +26,12 @@ function RoomPage() {
   const isCurrentOfferLoaded = useSelector(getIsCurrentOfferLoaded);
 
   const offersForMap = [currentOffer, ...nearbyOffers];
+  const reviews = useSelector(getReviews).slice().sort((first, second) => new Date(second.date) - new Date(first.date));
 
   useEffect(() => {
     dispatch(fetchCurrentOffer(id));
     dispatch(fetchNearbyOffers(id));
+    dispatch(fetchComments(id));
   }, [id, dispatch]);
 
   const {
@@ -94,7 +96,7 @@ function RoomPage() {
                 </div>
                 {goods && <GoodsList goods={goods} />}
                 {host && <PropertyHost host={host} description={description} />}
-                <ReviewsSection id={id}/>
+                <ReviewsSection id={id} reviews={reviews}/>
               </div>
             </div>
             <section className="property__map map">
