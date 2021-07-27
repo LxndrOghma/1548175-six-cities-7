@@ -54,7 +54,7 @@ const RatingSystem = {
 const PinSettings = {
   DEFAULT_IMG: 'img/pin.svg',
   ACTIVE_IMG: 'img/pin-active.svg',
-  SIZE: [30, 30],
+  SIZE: [27, 39],
   ANCHOR: [15, 30],
 };
 
