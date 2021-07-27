@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import RatingInputsList from '../rating-inputs-list/rating-inputs-list';
@@ -6,6 +6,7 @@ import { CommentFormSettings } from '../../../const';
 import { useDispatch, useSelector } from 'react-redux';
 import { sendComment } from '../../../store/api-actions';
 import { getIsCommentPosted } from '../../../store/data/selectors';
+import { setIsCommentPosted } from '../../../store/action';
 
 function CommentForm({id}) {
   const [ comment, setComment ] = useState({rating: 0, text: ''});
@@ -24,6 +25,10 @@ function CommentForm({id}) {
       || text.length > CommentFormSettings.MAX_CHARACTERS_COUNT
       || rating === 0);
   };
+
+  useEffect(() => {
+    dispatch(setIsCommentPosted(true));
+  }, [dispatch]);
 
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
