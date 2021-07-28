@@ -12,8 +12,9 @@ import EmptyMainPage from '../../empty-main-page/empty-main-page';
 import PlacesSorting from '../../sorting/places-sorting/places-sorting';
 import LoadWrapper from '../../loading/load-wrapper/load-wrapper';
 import { fetchOffersList } from '../../../store/api-actions';
-import { getIsOffersLoaded, getOffers } from '../../../store/data/selectors';
+import { getIsDataLoadingError, getIsOffersLoaded, getOffers } from '../../../store/data/selectors';
 import { getCity, getSortType } from '../../../store/ui/selectors';
+import ServerError from '../../server-error/server-error';
 
 function MainPage() {
   const [activeCard, setActiveCard] = useState(NaN);
@@ -22,6 +23,8 @@ function MainPage() {
   const city = useSelector(getCity);
   const sortType = useSelector(getSortType);
   const isOffersLoaded = useSelector(getIsOffersLoaded);
+  const isDataLoadingError = useSelector(getIsDataLoadingError);
+
 
   const dispatch = useDispatch();
 
@@ -47,6 +50,7 @@ function MainPage() {
   return (
     <div className="page page--gray page--main">
       <PageHeader />
+      {isDataLoadingError && <ServerError />}
 
       <LoadWrapper isDataLoaded={isOffersLoaded}>
         <main className="page__main page__main--index">

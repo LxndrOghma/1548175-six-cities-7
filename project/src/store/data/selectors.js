@@ -7,9 +7,11 @@ const getNearbyOffers = (state) => state[NameSpace.DATA].nearbyOffers;
 const getFavoriteOffers = (state) => state[NameSpace.DATA].favoriteOffers;
 const getIsOffersLoaded = (state) => state[NameSpace.DATA].isOffersLoaded;
 const getIsCurrentOfferLoaded = (state) => state[NameSpace.DATA].isCurrentOfferLoaded;
+const getIsFavoriteOffersLoaded = (state) => state[NameSpace.DATA].isFavoriteOffersLoaded;
 const getIsCommentsLoaded = (state) => state[NameSpace.DATA].isCommentsLoaded;
 const getIsNearbyOffersLoaded = (state) => state[NameSpace.DATA].isNearbyOffersLoaded;
 const getIsCommentPosted = (state) => state[NameSpace.DATA].isCommentPosted;
+const getIsDataLoadingError = (state) => state[NameSpace.DATA].isDataLoadingError;
 
 export {
   getOffers,
@@ -21,6 +23,8 @@ export {
   getIsCurrentOfferLoaded,
   getIsCommentsLoaded,
   getIsNearbyOffersLoaded,
-  getIsCommentPosted
+  getIsCommentPosted,
+  getIsDataLoadingError,
+  getIsFavoriteOffersLoaded
 };
 

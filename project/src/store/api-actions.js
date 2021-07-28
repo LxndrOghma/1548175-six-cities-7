@@ -1,15 +1,17 @@
-import { loadComments, loadFavoriteOffers, loadNearbyOffers, loadOffer, loadOffers, logout as userLogout, redirectToRoute, requiredAuthorization, setCommentsLoadState, setCurrentOfferLoadState, setFavoriteOffersLoadState, setIsCommentPosted, setNearbyOffersLoadState, setOfferIsFavorite, setOffersLoadState, setUser } from './action';
+import { loadComments, loadFavoriteOffers, loadNearbyOffers, loadOffer, loadOffers, logout as userLogout, redirectToRoute, requiredAuthorization, setCommentsLoadState, setCurrentOfferLoadState, setDataLoadingError, setFavoriteOffersLoadState, setIsCommentPosted, setNearbyOffersLoadState, setOfferIsFavorite, setOffersLoadState, setUser } from './action';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import { getAdaptedComment, getAdaptedOffer, getAdaptedUser } from '../adapter/adapter';
 
 const fetchOffersList = () => (dispatch, _getState, api) => {
   dispatch(setOffersLoadState(false));
+  dispatch(setDataLoadingError(false));
   return api.get(APIRoute.HOTELS)
     .then(({data}) => {
       const offers = data.map((offer) => getAdaptedOffer(offer));
       dispatch(loadOffers(offers));
     })
-    .then(() => dispatch(setOffersLoadState(true)));
+    .then(() => dispatch(setOffersLoadState(true)))
+    .catch(() => dispatch(setDataLoadingError(true)));
 };
 
 const fetchCurrentOffer = (id) => (dispatch, _getState, api) => {
@@ -35,12 +37,14 @@ const fetchComments = (id) => (dispatch, _getState, api) => {
 
 const fetchFavoriteOffers = () => (dispatch, _getState, api) => {
   dispatch(setFavoriteOffersLoadState(false));
+  dispatch(setDataLoadingError(false));
   return api.get(APIRoute.FAVORITES)
     .then(({data}) => {
       const favoriteOffers = data.map((offer) => getAdaptedOffer(offer));
       dispatch(loadFavoriteOffers(favoriteOffers));
     })
-    .then(() => dispatch(setFavoriteOffersLoadState(true)));
+    .then(() => dispatch(setFavoriteOffersLoadState(true)))
+    .catch(() => dispatch(setDataLoadingError(true)));
 };
 
 const markOfferIsFavorite = (id, status) => (dispatch, _getState, api) => (
@@ -64,12 +68,14 @@ const sendComment = ({id, comment, rating}) => (dispatch, _getState, api) => {
 
 const fetchNearbyOffers = (id) => (dispatch, _getState, api) => {
   dispatch(setNearbyOffersLoadState(false));
+  dispatch(setDataLoadingError(false));
   return api.get(`${APIRoute.HOTELS}/${id}/nearby`)
     .then(({data}) => {
       const offers = data.map((offer) => getAdaptedOffer(offer));
       dispatch(loadNearbyOffers(offers));
     })
-    .then(() => dispatch(setNearbyOffersLoadState(true)));
+    .then(() => dispatch(setNearbyOffersLoadState(true)))
+    .catch(() => dispatch(setDataLoadingError(true)));
 };
 
 const checkAuth = () => (dispatch, _getState, api) => (

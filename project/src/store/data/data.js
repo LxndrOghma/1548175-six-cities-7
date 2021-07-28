@@ -9,6 +9,7 @@ import {
   loadOffers,
   setCommentsLoadState,
   setCurrentOfferLoadState,
+  setDataLoadingError,
   setFavoriteOffersLoadState,
   setIsCommentPosted,
   setNearbyOffersLoadState,
@@ -28,6 +29,7 @@ const initialState = {
   isNearbyOffersLoaded: false,
   isFavoriteOffersLoaded: false,
   isCommentPosted: true,
+  isDataLoadingError: false,
 };
 
 const data = createReducer(initialState, (builder) => {
@@ -70,6 +72,9 @@ const data = createReducer(initialState, (builder) => {
       state.favoriteOffers = setFavoriteOffers(state.favoriteOffers, action.payload);
       state.currentOffer = setCurrentOffer(state.currentOffer, action.payload);
       state.nearbyOffers = setOffers(state.nearbyOffers, action.payload);
+    })
+    .addCase(setDataLoadingError, (state, action) => {
+      state.isDataLoadingError = action.payload;
     });
 });
 
