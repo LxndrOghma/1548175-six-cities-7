@@ -92,7 +92,8 @@ describe('Async operations', () => {
 
     return offersLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(3);
+        expect(dispatch).toHaveBeenCalledTimes(4);
+
 
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.SET_OFFERS_LOAD_STATE,
@@ -100,11 +101,16 @@ describe('Async operations', () => {
         });
 
         expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.SET_DATA_LOADING_ERROR,
+          payload: false,
+        });
+
+        expect(dispatch).toHaveBeenNthCalledWith(3, {
           type: ActionType.LOAD_OFFERS,
           payload: [getAdaptedOffer(offer)],
         });
 
-        expect(dispatch).toHaveBeenNthCalledWith(3, {
+        expect(dispatch).toHaveBeenNthCalledWith(4, {
           type: ActionType.SET_OFFERS_LOAD_STATE,
           payload: true,
         });
@@ -207,7 +213,8 @@ describe('Async operations', () => {
 
     return favoriteOffersLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(3);
+        expect(dispatch).toHaveBeenCalledTimes(4);
+
 
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.SET_FAVORITE_OFFERS_LOAD_STATE,
@@ -215,11 +222,16 @@ describe('Async operations', () => {
         });
 
         expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.SET_DATA_LOADING_ERROR,
+          payload: false,
+        });
+
+        expect(dispatch).toHaveBeenNthCalledWith(3, {
           type: ActionType.LOAD_FAVORITE_OFFERS,
           payload: [getAdaptedOffer(offer)],
         });
 
-        expect(dispatch).toHaveBeenNthCalledWith(3, {
+        expect(dispatch).toHaveBeenNthCalledWith(4, {
           type: ActionType.SET_FAVORITE_OFFERS_LOAD_STATE,
           payload: true,
         });
@@ -317,7 +329,7 @@ describe('Async operations', () => {
 
     return nearbyOffersLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(3);
+        expect(dispatch).toHaveBeenCalledTimes(4);
 
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.SET_NEARBY_OFFERS_LOAD_STATE,
@@ -325,11 +337,16 @@ describe('Async operations', () => {
         });
 
         expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.SET_DATA_LOADING_ERROR,
+          payload: false,
+        });
+
+        expect(dispatch).toHaveBeenNthCalledWith(3, {
           type: ActionType.LOAD_NEARBY_OFFERS,
           payload: [getAdaptedOffer(offer)],
         });
 
-        expect(dispatch).toHaveBeenNthCalledWith(3, {
+        expect(dispatch).toHaveBeenNthCalledWith(4, {
           type: ActionType.SET_NEARBY_OFFERS_LOAD_STATE,
           payload: true,
         });

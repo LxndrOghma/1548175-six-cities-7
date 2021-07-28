@@ -22,6 +22,9 @@ describe('Component:EmptyMainPage', () => {
       USER: {
         authorizationStatus: AuthorizationStatus.NO_AUTH,
       },
+      DATA: {
+        isDataLoadingError: false,
+      },
     });
 
     const { getByRole, rerender, queryByRole } = render(

@@ -16,6 +16,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     });
   });
 
@@ -32,6 +33,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     };
 
     const loadOffers = {
@@ -51,6 +53,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     });
   });
 
@@ -67,6 +70,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     };
 
     const loadOffer = {
@@ -86,6 +90,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     });
   });
 
@@ -102,6 +107,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     };
 
     const loadComments = {
@@ -121,6 +127,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     });
   });
 
@@ -137,6 +144,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     };
 
     const loadNearbyOffers = {
@@ -156,6 +164,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     });
   });
 
@@ -172,6 +181,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     };
 
     const loadFavoriteOffers = {
@@ -191,6 +201,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     });
   });
 
@@ -207,6 +218,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     };
 
     const setOffersLoadState = {
@@ -226,6 +238,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     });
   });
 
@@ -242,6 +255,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     };
 
     const setCurrentOfferLoadState = {
@@ -261,6 +275,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     });
   });
 
@@ -277,6 +292,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     };
 
     const setCommentsLoadState = {
@@ -296,6 +312,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     });
   });
 
@@ -312,6 +329,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     };
 
     const setNearbyOffersLoadState = {
@@ -331,6 +349,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: true,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     });
   });
 
@@ -347,6 +366,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     };
 
     const setFavoriteOffersLoadState = {
@@ -366,6 +386,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: true,
       isCommentPosted: true,
+      isDataLoadingError: false,
     });
   });
 
@@ -382,6 +403,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     };
 
     const setIsCommentPosted = {
@@ -401,6 +423,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: false,
+      isDataLoadingError: false,
     });
   });
 
@@ -420,6 +443,7 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
     };
 
     const setOfferIsFavorite = {
@@ -445,6 +469,44 @@ describe('Reducer: data', () => {
       isNearbyOffersLoaded: false,
       isFavoriteOffersLoaded: false,
       isCommentPosted: true,
+      isDataLoadingError: false,
+    });
+  });
+
+  it('should set data loading error state by action payload', () => {
+    const state = {
+      offers: [],
+      favoriteOffers: [],
+      currentOffer: DEFAULT_OFFER,
+      reviews: [],
+      nearbyOffers: [],
+      isOffersLoaded: false,
+      isCurrentOfferLoaded: false,
+      isCommentsLoaded: false,
+      isNearbyOffersLoaded: false,
+      isFavoriteOffersLoaded: false,
+      isCommentPosted: true,
+      isDataLoadingError: false,
+    };
+
+    const setIsCommentPosted = {
+      type: ActionType.SET_DATA_LOADING_ERROR,
+      payload: true,
+    };
+
+    expect(data(state, setIsCommentPosted)).toEqual({
+      offers: [],
+      favoriteOffers: [],
+      currentOffer: DEFAULT_OFFER,
+      reviews: [],
+      nearbyOffers: [],
+      isOffersLoaded: false,
+      isCurrentOfferLoaded: false,
+      isCommentsLoaded: false,
+      isNearbyOffersLoaded: false,
+      isFavoriteOffersLoaded: false,
+      isCommentPosted: true,
+      isDataLoadingError: true,
     });
   });
 });

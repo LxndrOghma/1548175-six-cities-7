@@ -55,7 +55,7 @@ describe('Component: ReviewsSection', () => {
     });
     const { getByText } = render(
       <Provider store={store}>
-        <ReviewsSection id={'1'}/>
+        <ReviewsSection id={'1'} reviews={mockReviews}/>
       </Provider>,
     );
 

@@ -96,6 +96,7 @@ describe('Component: FavoritesPage', () => {
     store = mockStore({
       DATA: {
         favoriteOffers: mockOffers,
+        isFavoriteOffersLoaded: true,
       },
       USER: {
         authorizationStatus: AuthorizationStatus.AUTH,
@@ -127,6 +128,7 @@ describe('Component: FavoritesPage', () => {
     store = mockStore({
       DATA: {
         favoriteOffers: [],
+        isFavoriteOffersLoaded: true,
       },
       USER: {
         authorizationStatus: AuthorizationStatus.AUTH,
