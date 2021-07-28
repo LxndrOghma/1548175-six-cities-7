@@ -13,7 +13,10 @@ function RatingInputsList({comment, setComment, isInputsDisabled}) {
 }
 
 RatingInputsList.propTypes = {
-  comment: PropTypes.object.isRequired,
+  comment: PropTypes.shape({
+    rating: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+  }).isRequired,
   setComment: PropTypes.func.isRequired,
   isInputsDisabled: PropTypes.bool.isRequired,
 };

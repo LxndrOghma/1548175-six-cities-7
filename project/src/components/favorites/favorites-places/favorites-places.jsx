@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import FavoritesCard from '../favorites-card/favorites-card';
+import offersProp from '../../props/offers.prop';
 
 function FavoritesPlaces({offers}) {
   return (
@@ -12,7 +13,7 @@ function FavoritesPlaces({offers}) {
 }
 
 FavoritesPlaces.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.object).isRequired,
+  offers: PropTypes.arrayOf(offersProp).isRequired,
 };
 
 export default FavoritesPlaces;
