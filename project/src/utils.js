@@ -27,14 +27,11 @@ const getNumericFormatedData = (utcDate) => {
   return `${dd}-${mm}-${yy}`;
 };
 
-const getSortedByCityOffersList = (offers, city) => offers.filter((offer) => offer.city.name === city);
-
-
 const sortLowToHighPrice = (arr) => arr.sort((a, b) => a.price - b.price);
 const sortHighToLowPrice = (arr) => arr.sort((a, b) => b.price - a.price);
 const sortByRating = (arr) => arr.sort((a, b) => b.rating - a.rating);
 
-const getSortedOffers = (offers, sortType) => {
+const getSortedOffersList = (offers, sortType) => {
   const offersList = offers.slice();
 
   switch (sortType) {
@@ -80,8 +77,7 @@ const setCurrentOffer = (currentOffer, updatedOffer) => {
 export {
   getMonthYearFormatedDate,
   getNumericFormatedData,
-  getSortedByCityOffersList,
-  getSortedOffers,
+  getSortedOffersList,
   validateEmail,
   getWordWithCapitalLetter,
   setOffers,

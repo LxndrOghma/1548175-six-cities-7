@@ -28,7 +28,7 @@ function FavoritesPage() {
       <LoadWrapper isDataLoaded={isFavoritesLoaded}>
         <main className={`page__main page__main--favorites ${offers.length === 0 && 'page__main--favorites-empty'}`}>
           <div className="page__favorites-container container">
-            {offers.length > 0 ? <FavoritesSection offers={offers} /> : <EmptyFavoritesSection />}
+            {offers.length > 0 ? <FavoritesSection /> : <EmptyFavoritesSection />}
           </div>
         </main>
       </LoadWrapper>

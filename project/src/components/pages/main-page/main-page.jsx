@@ -6,30 +6,25 @@ import { OffersListType } from '../../../const';
 import OffersList from '../../offers/offers-list/offers-list';
 import Map from '../../map/map';
 import CitiesList from '../../cities/cities-list/cities-list';
-import { getSortedByCityOffersList, getSortedOffers } from '../../../utils';
 import { changeCity, changeSortType } from '../../../store/action';
 import EmptyMainPage from '../../empty-main-page/empty-main-page';
 import PlacesSorting from '../../sorting/places-sorting/places-sorting';
 import LoadWrapper from '../../loading/load-wrapper/load-wrapper';
 import { fetchOffersList } from '../../../store/api-actions';
-import { getIsDataLoadingError, getIsOffersLoaded, getOffers } from '../../../store/data/selectors';
-import { getCity, getSortType } from '../../../store/ui/selectors';
+import { getIsDataLoadingError, getIsOffersLoaded, getSortedOffers } from '../../../store/data/selectors';
+import { getCity } from '../../../store/ui/selectors';
 import ServerError from '../../server-error/server-error';
 
 function MainPage() {
   const [activeCard, setActiveCard] = useState(NaN);
 
-  const offersList = useSelector(getOffers);
+  const offers = useSelector(getSortedOffers);
   const city = useSelector(getCity);
-  const sortType = useSelector(getSortType);
   const isOffersLoaded = useSelector(getIsOffersLoaded);
   const isDataLoadingError = useSelector(getIsDataLoadingError);
 
 
   const dispatch = useDispatch();
-
-  const sortedByCityOffersList = getSortedByCityOffersList(offersList, city);
-  const offers = getSortedOffers(sortedByCityOffersList, sortType);
 
   const onSortTypeChange = (evt) => {
     dispatch(changeSortType(evt.target.textContent));

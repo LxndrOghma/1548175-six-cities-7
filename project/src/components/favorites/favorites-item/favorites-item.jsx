@@ -4,10 +4,14 @@ import PropTypes from 'prop-types';
 
 import { AppRoute } from '../../../const';
 import FavoritesPlaces from '../favorites-places/favorites-places';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeCity } from '../../../store/action';
+import { getSortedByCityFavoriteOffers } from '../../../store/data/selectors';
 
-function FavoritesItem({city, offers}) {
+function FavoritesItem({city}) {
+
+  const sortedOffers = useSelector(getSortedByCityFavoriteOffers);
+
   const dispatch = useDispatch();
 
   const handleClick = () => {
@@ -23,14 +27,13 @@ function FavoritesItem({city, offers}) {
           </Link>
         </div>
       </div>
-      <FavoritesPlaces offers={offers}/>
+      <FavoritesPlaces offers={sortedOffers.get(city)}/>
     </li>
 
   );
 }
 
 FavoritesItem.propTypes ={
-  offers: PropTypes.array.isRequired,
   city: PropTypes.string.isRequired,
 };
 
