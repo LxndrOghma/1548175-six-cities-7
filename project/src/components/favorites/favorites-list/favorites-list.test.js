@@ -86,15 +86,18 @@ const mockStore = configureStore({});
 describe('Component: FavoritesList', () => {
   beforeAll(() => {
     history = createMemoryHistory();
+    store = mockStore({DATA: {
+      favoriteOffers: mockOffers,
+    },
+    });
   });
 
   it('should render correctly', () => {
-    store = mockStore({});
 
     const { getByText } = render(
       <Provider store={store}>
         <Router history={history}>
-          <FavoritesList offers={mockOffers} />
+          <FavoritesList />
         </Router>
       </Provider>);
 

@@ -88,15 +88,18 @@ const mockStore = configureStore({});
 describe('Component: FavoritesItem', () => {
   beforeAll(() => {
     history = createMemoryHistory();
+    store = mockStore({
+      DATA: {
+        favoriteOffers: mockOffers,
+      },
+    });
   });
 
   it('should render correctly', () => {
-    store = mockStore({});
-
     const { getByText } = render(
       <Provider store={store}>
         <Router history={history}>
-          <FavoritesItem city={'Paris'} offers={mockOffers} />
+          <FavoritesItem city={'Paris'} />
         </Router>
       </Provider>);
 
@@ -109,8 +112,6 @@ describe('Component: FavoritesItem', () => {
     const useDispatch = jest.spyOn(Redux, 'useDispatch');
     useDispatch.mockReturnValue(dispatch);
 
-    store = mockStore({});
-
     const {getByTestId, queryByText} = render(
       <Provider store={store}>
         <Router history={history}>
@@ -119,7 +120,7 @@ describe('Component: FavoritesItem', () => {
               <h1>This is main page</h1>
             </Route>
             <Route>
-              <FavoritesItem city={'Paris'} offers={mockOffers} />
+              <FavoritesItem city={'Paris'} />
             </Route>
           </Switch>
         </Router>

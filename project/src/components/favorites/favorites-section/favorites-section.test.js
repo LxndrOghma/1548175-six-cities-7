@@ -85,10 +85,13 @@ const mockStore = configureStore({});
 describe('Component: FavoritesSection', () => {
   beforeAll(() => {
     history = createMemoryHistory();
+    store = mockStore({DATA: {
+      favoriteOffers: mockOffers,
+    },
+    });
   });
 
   it('should render correctly', () => {
-    store = mockStore({});
 
     const { getByRole, getByText} = render(
       <Provider store={store}>
